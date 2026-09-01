@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alex Landrin — Product Designer</title>
+
+<!--
+  ─────────────────────────────────────────────────────────────
+  HOW TO MAKE THIS YOURS (everything is in this one file):
+  • Your name .......... search for  "Hey, I'm Oscar"
+  • Intro text ......... the <p> tags inside .intro
+  • Avatar ............. replace the <svg class="avatar"> with:
+                         <img class="avatar" src="me.png" alt="me" />
+  • Projects ........... edit the .project cards (name + pill + mockup)
+  • Contact button ..... search for  mailto:alexlandrin203@gmail.com
+  • Social links ....... the <a> tags inside the .dock
+  Just save and re-open in your browser. No build tools needed.
+  ─────────────────────────────────────────────────────────────
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#161616;
+    --muted:#6b6b6b;
+    --line:#e7e7e3;
+    --card:#ffffff;
+    --bg:#f4f4f2;
+    --dot:#d9d9d4;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 30px -12px rgba(0,0,0,.18);
+    --shadow-hi:0 2px 6px rgba(0,0,0,.06), 0 30px 60px -18px rgba(0,0,0,.30);
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    overflow:hidden;
+    font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    background-color:var(--bg);
+    background-image:radial-gradient(var(--dot) 1.1px, transparent 1.2px);
+    background-size:22px 22px;
+    background-position:-11px -11px;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    user-select:none;
+  }
+
+  /* The composition lives on a fixed-size stage, centered and
+     scaled to fit whatever screen it's opened on. */
+  .stage{
+    position:fixed;
+    left:50%; top:50%;
+    width:1360px; height:780px;
+    transform:translate(-50%,-50%);
+    transform-origin:center center;
+  }
+
+  .card{
+    position:absolute;
+    touch-action:none;
+    cursor:grab;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    transition:box-shadow .25s ease, transform .25s cubic-bezier(.2,.7,.2,1);
+    animation:pop .6s cubic-bezier(.2,.7,.2,1) backwards;
+    animation-delay:var(--d,0s);
+    will-change:transform;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-hi); }
+  .card:active{ cursor:grabbing; }
+  .card.dragging{
+    cursor:grabbing;
+    transform:scale(1.03) rotate(var(--tilt,0deg));
+    box-shadow:var(--shadow-hi);
+    transition:box-shadow .2s ease;
+  }
+
+  @keyframes pop{
+    from{ opacity:0; transform:translateY(18px) scale(.96); }
+    to  { opacity:1; }
+  }
+
+  .no-drag{ cursor:default; }
+  /* Images must not hijack the drag (native image-drag / pointer capture) */
+  .card img{ pointer-events:none; -webkit-user-drag:none; user-drag:none; user-select:none; }
+  /* Freeze the tool logos' idle drift while they're being dragged */
+  .tool.dragging{ animation-play-state:paused; }
+
+  /* Tool logo tiles — gentle continuous idle drift (micro-interaction) */
+  .tool{ width:58px; height:58px; padding:0; border-radius:15px; overflow:hidden;
+    animation: toolFloat var(--fdur,8s) ease-in-out var(--fdelay,0s) infinite,
+               toolIn .6s ease var(--d,0s) backwards; }
+  .tool img{ display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; }
+  @keyframes toolIn{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes toolFloat{
+    0%   { transform: translate(0,0)     rotate(var(--tilt,0deg)); }
+    25%  { transform: translate(5px,-9px) rotate(calc(var(--tilt,0deg) + 2.5deg)); }
+    50%  { transform: translate(-3px,-4px) rotate(var(--tilt,0deg)); }
+    75%  { transform: translate(4px,7px)  rotate(calc(var(--tilt,0deg) - 2.5deg)); }
+    100% { transform: translate(0,0)     rotate(var(--tilt,0deg)); }
+  }
+  @media (prefers-reduced-motion:reduce){ .tool{ animation: toolIn .6s ease var(--d,0s) backwards; } }
+
+  /* ── Intro card ─────────────────────────────── */
+  .intro{ width:404px; padding:30px 32px 28px; }
+  .intro .avatar{ width:44px; height:44px; border-radius:12px; display:block; margin-bottom:20px; object-fit:cover; }
+  .intro h1{ font-size:28px; line-height:1.1; letter-spacing:-.02em; margin:0 0 18px; font-weight:600; }
+  .intro p{ font-size:15px; line-height:1.6; color:#3a3a3a; margin:0 0 16px; max-width:340px; }
+  .intro p.ps{ color:var(--muted); }
+  .btns{ display:flex; gap:10px; margin-top:22px; }
+  button{ font-family:inherit; }
+  .btn{ border:none; border-radius:12px; padding:11px 20px; font-size:14px; font-weight:500; cursor:pointer; transition:transform .15s ease, background .2s ease, box-shadow .2s ease; }
+  .btn.primary{ background:var(--ink); color:#fff; }
+  .btn.primary:hover{ transform:translateY(-2px); box-shadow:0 10px 20px -8px rgba(0,0,0,.5); }
+  .btn.ghost{ background:#f1f1ef; color:var(--ink); }
+  .btn.ghost:hover{ background:#e9e9e6; transform:translateY(-2px); }
+  a.reset{ color:inherit; text-decoration:none; }
+
+  /* ── Figma-style multiplayer selection on the intro card ── */
+  :root{ --fig-frame:#1aa0ff; --fig-cursor:#4d7cfe; }
+  .figma-select{
+    position:absolute; inset:-4px;
+    border:1.5px solid var(--fig-frame);
+    border-radius:3px;
+    pointer-events:none;                 /* never blocks dragging */
+    z-index:20;
+  }
+  .fh{                                    /* the 4 corner resize handles */
+    position:absolute; width:9px; height:9px;
+    background:#fff; border:1.5px solid var(--fig-frame); border-radius:2px;
+  }
+  .fh.tl{ top:-5px; left:-5px; }
+  .fh.tr{ top:-5px; right:-5px; }
+  .fh.bl{ bottom:-5px; left:-5px; }
+  .fh.br{ bottom:-5px; right:-5px; }
+  /* Roaming collaborator cursor — glides around the whole canvas (JS-driven) */
+  .figma-cursor{
+    position:absolute; left:0; top:0; z-index:45;
+    display:flex; align-items:flex-start; gap:3px;
+    pointer-events:none;
+    transition:left 1.15s cubic-bezier(.45,0,.2,1), top 1.15s cubic-bezier(.45,0,.2,1);
+  }
+  .figma-cursor .arrow{
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.25));
+    transform-origin:4px 4px;                 /* pivot at the pointer tip */
+    transition:transform .13s ease;
+  }
+  .figma-cursor.clicking .arrow{ transform:scale(.8); }
+  .figma-cursor .cursor-label{ transition:transform .16s ease, box-shadow .16s ease; }
+  .figma-cursor.clicking .cursor-label{ transform:scale(1.07); box-shadow:0 4px 12px rgba(77,124,254,.6); }
+
+  /* Figma-style comment pin (decorative, self-typing) */
+  .fig-comment{
+    position:absolute; z-index:44; width:252px;
+    pointer-events:none; user-select:none;
+    animation: figCommentIn .7s cubic-bezier(.2,.8,.2,1) both,
+               figCommentFloat 7.5s ease-in-out .7s infinite;
+    transform-origin:center;
+  }
+  .fig-comment .fc-card{
+    position:relative;
+    background:#2c2c2c; border-radius:15px;
+    padding:14px 16px 12px;
+    box-shadow:0 16px 32px rgba(20,22,30,.34), 0 2px 6px rgba(0,0,0,.3);
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .fig-comment .fc-text{
+    margin:0; color:#fff; font-size:13px; line-height:1.42;
+    font-weight:450; letter-spacing:.1px; min-height:2.84em;
+  }
+  .fig-comment .fc-caret{
+    display:inline-block; width:1.5px; height:1.05em; margin-left:1px;
+    background:#5b8bff; vertical-align:-2px; border-radius:1px;
+    animation:fcCaret 1s steps(1) infinite;
+  }
+  @keyframes fcCaret{ 0%,50%{ opacity:1; } 50.01%,100%{ opacity:0; } }
+  .fig-comment .fc-divider{ height:1px; background:#444; margin:12px -16px 10px; }
+  .fig-comment .fc-row{ display:flex; align-items:center; gap:13px; }
+  .fig-comment .fc-ico{ color:rgba(255,255,255,.72); display:inline-flex; }
+  .fig-comment .fc-ico svg, .fig-comment .fc-send svg{ display:block; }
+  .fig-comment .fc-send{
+    margin-left:auto; width:26px; height:26px; border-radius:50%;
+    background:#2f7bff; display:inline-flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 6px rgba(47,123,255,.5);
+  }
+  .fig-comment .fc-pin{
+    position:absolute; top:-13px; right:-13px;
+    width:30px; height:30px; background:#2f8cff;
+    border-radius:50% 50% 50% 3px;
+    box-shadow:0 7px 16px rgba(47,140,255,.45);
+  }
+  @keyframes figCommentIn{ from{ opacity:0; transform:translateY(12px) scale(.93); } to{ opacity:1; transform:none; } }
+  @keyframes figCommentFloat{ 0%,100%{ transform:translateY(0) rotate(-1.3deg); } 50%{ transform:translateY(-7px) rotate(1deg); } }
+
+  /* idle wander */
+  @keyframes figDrift{
+    0%   { transform:translate(0,0); }
+    30%  { transform:translate(4px,-3px); }
+    55%  { transform:translate(-2px,-6px); }
+    80%  { transform:translate(2px,2px); }
+    100% { transform:translate(0,0); }
+  }
+  /* a little click every loop */
+  @keyframes figTap{
+    0%,84%,100% { transform:scale(1); }
+    88%         { transform:scale(.8); }
+    93%         { transform:scale(1); }
+  }
+  /* the name tag pops when the click lands */
+  @keyframes figPop{
+    0%,84%,100% { transform:scale(1); box-shadow:0 2px 6px rgba(77,124,254,.45); }
+    90%         { transform:scale(1.08); box-shadow:0 4px 12px rgba(77,124,254,.6); }
+    95%         { transform:scale(1); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .figma-cursor, .figma-cursor .arrow, .figma-cursor .cursor-label{ animation:none; }
+    .fig-comment{ animation:none; }
+  }
+  .cursor-label{
+    margin-top:8px;
+    background:var(--fig-cursor); color:#fff;
+    font-size:12px; font-weight:500; line-height:1;
+    padding:4px 9px; border-radius:7px; white-space:nowrap;
+    box-shadow:0 2px 6px rgba(77,124,254,.45);
+  }
+
+  /* ── Project cards ──────────────────────────── */
+  .project{ padding:0; background:transparent; border:none; box-shadow:none; }
+  .project:hover{ box-shadow:none; }
+  .project .shot{
+    border-radius:16px; overflow:hidden; display:block;
+    box-shadow:var(--shadow);
+    transition:box-shadow .25s ease;
+  }
+  .project:hover .shot{ box-shadow:var(--shadow-hi); }
+  .project svg{ display:block; width:100%; height:auto; }
+  .project-meta{ display:flex; align-items:center; gap:10px; margin-top:14px; padding-left:2px; }
+  .project-meta .name{ font-size:15px; font-weight:600; }
+  .pill{ font-size:12.5px; color:#4b4b4b; background:#ececea; border:1px solid #e2e2df; padding:4px 10px; border-radius:8px; font-weight:500; }
+
+  /* ── Recommendation widget ──────────────────── */
+  .reco{ width:250px; padding:14px; }
+  .reco .quote{ font-size:13px; color:#444; background:#f5f5f3; border:1px solid var(--line); border-radius:10px; padding:10px 12px; line-height:1.4; }
+  .reco .warn{ display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:#5f7a5f; margin:12px 2px; line-height:1.35; }
+  .reco .warn svg{ flex:none; margin-top:1px; }
+  .reco .apply{ width:100%; background:var(--ink); color:#fff; border:none; border-radius:10px; padding:11px; font-size:13.5px; font-weight:500; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease; }
+  .reco .apply:hover{ transform:translateY(-2px); box-shadow:0 10px 20px -8px rgba(0,0,0,.5); }
+
+  /* ── SignFlow app widget ────────────────────── */
+  .signflow{ width:246px; padding:16px; }
+  .sf-head{ display:flex; align-items:center; justify-content:space-between; }
+  .sf-icon{ width:34px; height:34px; border-radius:9px; background:linear-gradient(160deg,#4f8cff,#2f6be0); display:grid; place-items:center; box-shadow:0 6px 14px -6px rgba(47,107,224,.7); }
+  .sf-link{ font-size:12px; color:var(--muted); display:inline-flex; align-items:center; gap:4px; text-decoration:none; cursor:pointer; transition:color .15s ease; }
+  a.sf-link:hover{ color:var(--ink, #111); text-decoration:underline; text-underline-offset:2px; }
+  .sf-title{ font-size:15px; font-weight:600; margin:14px 0 4px; }
+  .sf-desc{ font-size:12.5px; color:var(--muted); line-height:1.45; }
+  .sf-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:13px; border-top:1px solid var(--line); }
+  .sf-foot .set{ font-size:12.5px; color:#4b4b4b; display:inline-flex; align-items:center; gap:6px; }
+  .toggle{ width:38px; height:22px; border-radius:999px; background:#d8d8d4; position:relative; cursor:pointer; transition:background .2s ease; }
+  .toggle::after{ content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s cubic-bezier(.3,1.5,.5,1); }
+  .toggle.on{ background:var(--ink); }
+  .toggle.on::after{ transform:translateX(16px); }
+
+  /* ── Prompt widget ──────────────────────────── */
+  .prompt{ width:300px; padding:16px 16px 12px; }
+  .prompt .ph{ font-size:14px; color:#9a9a9a; }
+  .prompt .row{ display:flex; align-items:center; gap:16px; margin-top:22px; color:#8c8c8c; }
+  .prompt .row svg{ cursor:pointer; transition:color .15s ease, transform .15s ease; }
+  .prompt .row svg:hover{ color:var(--ink); transform:translateY(-1px); }
+
+  /* ── Dock ───────────────────────────────────── */
+  .dock{
+    position:absolute; left:50%; bottom:64px; transform:translateX(-50%);
+    display:flex; align-items:center; gap:6px;
+    background:#1a1a1a; padding:9px 12px; border-radius:999px;
+    box-shadow:0 10px 30px -8px rgba(0,0,0,.55);
+    z-index:5000;
+    animation:pop .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay:.5s;
+  }
+  .dock a{ width:38px; height:38px; border-radius:50%; display:grid; place-items:center; color:#cfcfcf; text-decoration:none; transition:transform .18s cubic-bezier(.3,1.4,.5,1), background .2s ease, color .2s ease; }
+  .dock a:hover{ color:#fff; background:rgba(255,255,255,.12); transform:translateY(-6px) scale(1.12); }
+  .dock .sep{ width:1px; height:20px; background:rgba(255,255,255,.14); margin:0 4px; }
+.dock a{ position:relative; }
+  .dock a::after{ content:attr(data-tip); position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%) translateY(4px); background:#1a1a1a; color:#fff; font-size:11px; font-weight:500; padding:5px 9px; border-radius:7px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .15s ease, transform .15s ease; box-shadow:0 6px 16px -6px rgba(0,0,0,.5); z-index:10; }
+  .dock a:hover::after{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* Small hint that fades away */
+  .hint{
+    position:fixed; left:50%; top:26px; transform:translateX(-50%);
+    font-size:12.5px; color:var(--muted); background:rgba(255,255,255,.7);
+    backdrop-filter:blur(6px); border:1px solid var(--line);
+    padding:7px 14px; border-radius:999px; z-index:6000;
+    animation:hintFade 5s ease forwards 1.2s; pointer-events:none;
+  }
+  @keyframes hintFade{ 0%{opacity:0; transform:translate(-50%,-6px);} 12%{opacity:1; transform:translate(-50%,0);} 80%{opacity:1;} 100%{opacity:0; transform:translate(-50%,-6px);} }
+
+  /* ============ RESPONSIVE — reflow the canvas into a scrollable stack on phones ============ */
+  @media (max-width:768px){
+    html,body{ height:auto; }
+    body{ overflow-x:hidden; overflow-y:auto; }
+    .stage{
+      position:static; left:auto; top:auto;
+      width:auto; height:auto; min-height:100vh;
+      transform:none !important;
+      display:flex; flex-direction:column; align-items:center; gap:16px;
+      padding:26px 16px 104px; box-sizing:border-box;
+    }
+    .stage .card{
+      position:relative !important; left:auto !important; top:auto !important;
+      width:100% !important; max-width:430px !important;
+      transform:none !important; cursor:default; animation:none;
+    }
+    .card:hover{ transform:none; box-shadow:var(--shadow); }
+    .intro{ order:-1; }
+    .stage .card img, .stage .card iframe{ max-width:100%; }
+    /* decorative canvas furniture has no place in a stack */
+    .tool, .figma-cursor, .fig-comment, .figma-select{ display:none !important; }
+    .dock{ position:fixed !important; bottom:16px !important; z-index:5000; }
+    .hint{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hint">✦ Tip: grab and drag anything on the page</div>
+
+<div class="stage" id="stage">
+
+  <!-- Cryptix (left) -->
+  <div class="card project" style="left:20px; top:250px; width:300px; --d:.18s; --tilt:2deg;" data-href="ream.html" title="Open case study">
+    <div class="shot">
+      <img src="ream/cover_ream.jpg" alt="REAM — agency dashboard" style="display:block; width:100%; height:auto;" />
+    </div>
+    <div class="project-meta"><span class="name">REAM</span><span class="pill">Fintech · SaaS</span></div>
+  </div>
+
+  <!-- Intro (center) -->
+  <div class="card intro" style="left:472px; top:118px; --d:0s; --tilt:0deg;">
+    <!-- Your photo. Save it in this folder as  me.jpg  (falls back to the drawing if missing). -->
+    <img class="avatar" src="me.png" alt="Alex Landrin" onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='block';" />
+    <svg id="avatarFallback" class="avatar" style="display:none" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
+      <defs><linearGradient id="av" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b7280"/><stop offset="1" stop-color="#374151"/></linearGradient></defs>
+      <rect width="44" height="44" rx="12" fill="url(#av)"/>
+      <circle cx="22" cy="17" r="7.5" fill="#e9eaec"/>
+      <path d="M8 40c1.5-9 27.5-9 29 0Z" fill="#e9eaec"/>
+    </svg>
+    <h1>Hey, I'm Alex.</h1>
+    <p>I design product and brand for SaaS, from the brand mark to the shipped interface. A mathematics background makes me systematic; a builder's habit means I take the work all the way to launch.</p>
+    <p>This page works a bit like my desk. Projects, notes and half-finished thoughts, all within reach. Drag things around, open whatever catches your eye.</p>
+    <p class="ps">P.S. Yes, everything here is draggable. Might as well try it.</p>
+    <div class="btns">
+      <a class="btn primary no-drag" href="mailto:alexlandrin203@gmail.com" style="display:inline-block; text-decoration:none;">Get in touch</a>
+      <a class="reset" href="about.html"><button class="btn ghost no-drag">About me</button></a>
+    </div>
+
+    <!-- Figma multiplayer selection frame (decorative). Change the name below. -->
+    <div class="figma-select" aria-hidden="true">
+      <span class="fh tl"></span><span class="fh tr"></span>
+      <span class="fh bl"></span><span class="fh br"></span>
+    </div>
+  </div>
+
+  <!-- Novera (top-right) -->
+  <div class="card project" style="left:1000px; top:76px; width:290px; --d:.12s; --tilt:2deg;" data-href="aiio.html" title="Open case study">
+    <div class="shot">
+      <img src="aiio/cover_aiio.png" alt="aiio — ProcessCollector" style="display:block; width:100%; height:auto;" />
+    </div>
+    <div class="project-meta"><span class="name">aiio</span><span class="pill">BPMN · SaaS</span></div>
+  </div>
+
+  <!-- SignFlow (bottom-left) -->
+  <div class="card signflow" style="left:206px; top:566px; --d:.34s; --tilt:-1deg;">
+    <div class="sf-head">
+      <div class="sf-icon" style="background:#1f1f22; border-radius:50%; overflow:hidden; box-shadow:0 6px 14px -6px rgba(0,0,0,.5);">
+        <img src="asset/Logomint.png" alt="LogoMint" style="width:100%; height:100%; object-fit:cover; display:block;" />
+      </div>
+      <a class="sf-link no-drag" href="https://logomint.co" target="_blank" rel="noopener" title="Open logomint.co">logomint.co
+        <svg width="11" height="11" viewBox="0 0 24 24"><path fill="#9a9a9a" d="M6.24992 4.5C5.28344 4.5 4.49996 5.2835 4.49996 6.25V17.75C4.49996 18.7165 5.28344 19.5 6.24992 19.5H17.7496C18.7161 19.5 19.4996 18.7165 19.4996 17.75V13.75C19.4996 13.3358 19.8354 13 20.2496 13C20.6638 13 20.9995 13.3358 20.9995 13.75V17.75C20.9995 19.5449 19.5445 21 17.7496 21H6.24992C4.45504 21 3 19.5449 3 17.75V6.25C3 4.45507 4.45504 3 6.24992 3H10.2498C10.664 3 10.9998 3.33579 10.9998 3.75C10.9998 4.16421 10.664 4.5 10.2498 4.5H6.24992ZM12.9997 3.75C12.9997 3.33579 13.3355 3 13.7497 3H20.25C20.6642 3 21 3.33579 21 3.75V10.25C21 10.6642 20.6642 11 20.25 11C19.8358 11 19.5 10.6642 19.5 10.25V5.56074L14.28 10.7804C13.9871 11.0732 13.5123 11.0732 13.2194 10.7803C12.9265 10.4874 12.9265 10.0125 13.2194 9.71964L18.4395 4.5H13.7497C13.3355 4.5 12.9997 4.16421 12.9997 3.75Z"/></svg>
+      </a>
+    </div>
+    <div class="sf-title">LogoMint</div>
+    <div class="sf-desc">My brand studio. Identity, naming and logos for 500+ clients worldwide.</div>
+    <div class="sf-foot">
+      <span class="set">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#6b6b6b" d="M12.0122 2.25C12.7462 2.25846 13.4773 2.34326 14.1937 2.50304C14.5064 2.57279 14.7403 2.83351 14.7758 3.15196L14.946 4.67881C15.0231 5.37986 15.615 5.91084 16.3206 5.91158C16.5103 5.91188 16.6979 5.87238 16.8732 5.79483L18.2738 5.17956C18.5651 5.05159 18.9055 5.12136 19.1229 5.35362C20.1351 6.43464 20.8889 7.73115 21.3277 9.14558C21.4223 9.45058 21.3134 9.78203 21.0564 9.9715L19.8149 10.8866C19.4607 11.1468 19.2516 11.56 19.2516 11.9995C19.2516 12.4389 19.4607 12.8521 19.8157 13.1129L21.0582 14.0283C21.3153 14.2177 21.4243 14.5492 21.3297 14.8543C20.8911 16.2685 20.1377 17.5649 19.1261 18.6461C18.9089 18.8783 18.5688 18.9483 18.2775 18.8206L16.8712 18.2045C16.4688 18.0284 16.0068 18.0542 15.6265 18.274C15.2463 18.4937 14.9933 18.8812 14.945 19.3177L14.7759 20.8444C14.741 21.1592 14.5122 21.4182 14.204 21.4915C12.7556 21.8361 11.2465 21.8361 9.79803 21.4915C9.48991 21.4182 9.26105 21.1592 9.22618 20.8444L9.05736 19.32C9.00777 18.8843 8.75434 18.498 8.37442 18.279C7.99451 18.06 7.5332 18.0343 7.1322 18.2094L5.72557 18.8256C5.43422 18.9533 5.09403 18.8833 4.87678 18.6509C3.86462 17.5685 3.11119 16.2705 2.6732 14.8548C2.57886 14.5499 2.68786 14.2186 2.94485 14.0293L4.18818 13.1133C4.54232 12.8531 4.75147 12.4399 4.75147 12.0005C4.75147 11.561 4.54232 11.1478 4.18771 10.8873L2.94516 9.97285C2.6878 9.78345 2.5787 9.45178 2.67337 9.14658C3.11212 7.73215 3.86594 6.43564 4.87813 5.35462C5.09559 5.12236 5.43594 5.05259 5.72724 5.18056L7.12762 5.79572C7.53056 5.97256 7.9938 5.94585 8.37577 5.72269C8.75609 5.50209 9.00929 5.11422 9.05817 4.67764L9.22824 3.15196C9.26376 2.83335 9.49786 2.57254 9.8108 2.50294C10.5281 2.34342 11.26 2.25865 12.0122 2.25ZM12.0124 3.7499C11.5583 3.75524 11.1056 3.79443 10.6578 3.86702L10.5489 4.84418C10.4471 5.75368 9.92003 6.56102 9.13042 7.01903C8.33597 7.48317 7.36736 7.53903 6.52458 7.16917L5.62629 6.77456C5.05436 7.46873 4.59914 8.25135 4.27852 9.09168L5.07632 9.67879C5.81513 10.2216 6.25147 11.0837 6.25147 12.0005C6.25147 12.9172 5.81513 13.7793 5.0771 14.3215L4.27805 14.9102C4.59839 15.752 5.05368 16.5361 5.626 17.2316L6.53113 16.8351C7.36923 16.4692 8.33124 16.5227 9.12353 16.9794C9.91581 17.4361 10.4443 18.2417 10.548 19.1526L10.657 20.1365C11.5466 20.2878 12.4555 20.2878 13.3451 20.1365L13.4541 19.1527C13.5549 18.2421 14.0828 17.4337 14.876 16.9753C15.6692 16.5168 16.6332 16.463 17.4728 16.8305L18.3772 17.2267C18.949 16.5323 19.4041 15.7495 19.7247 14.909L18.9267 14.3211C18.1879 13.7783 17.7516 12.9162 17.7516 11.9995C17.7516 11.0827 18.1879 10.2206 18.9258 9.67847L19.7227 9.09109C19.4021 8.25061 18.9468 7.46784 18.3748 6.77356L17.4783 7.16737C17.113 7.32901 16.7178 7.4122 16.3187 7.41158C14.849 7.41004 13.6155 6.30355 13.4551 4.84383L13.3462 3.8667C12.9007 3.7942 12.4526 3.75512 12.0124 3.7499ZM11.9997 8.24995C14.0708 8.24995 15.7497 9.92888 15.7497 12C15.7497 14.071 14.0708 15.75 11.9997 15.75C9.92863 15.75 8.2497 14.071 8.2497 12C8.2497 9.92888 9.92863 8.24995 11.9997 8.24995ZM11.9997 9.74995C10.7571 9.74995 9.7497 10.7573 9.7497 12C9.7497 13.2426 10.7571 14.25 11.9997 14.25C13.2423 14.25 14.2497 13.2426 14.2497 12C14.2497 10.7573 13.2423 9.74995 11.9997 9.74995Z"/></svg>
+        Settings
+      </span>
+      <div class="toggle on no-drag" role="switch" aria-checked="true"></div>
+    </div>
+  </div>
+
+  <!-- Third shot (bottom-right) -->
+  <div class="card project" style="left:770px; top:566px; width:320px; --d:.24s; --tilt:-2deg;" data-href="kassirh.html" title="Open case study">
+    <div class="shot">
+      <img src="kassirh/cover_kassirh.jpg" alt="kassiRH — Détails Employé" style="display:block; width:100%; height:auto;" />
+    </div>
+    <div class="project-meta"><span class="name">kassiRH</span><span class="pill">HR · SaaS</span></div>
+  </div>
+
+  <!-- Tool logos (my stack) -->
+  <div class="card tool" style="left:56px; top:28px; --d:.42s; --tilt:-7deg; --fdur:8s; --fdelay:-1s;" title="Figma"><img src="asset/Figma.png" alt="Figma" /></div>
+  <div class="card tool" style="left:1185px; top:16px; --d:.46s; --tilt:6deg; --fdur:9.5s; --fdelay:-4s;" title="Adobe Illustrator"><img src="asset/Illustrator.png" alt="Adobe Illustrator" /></div>
+  <div class="card tool" style="left:60px; top:600px; --d:.5s; --tilt:-5deg; --fdur:7.5s; --fdelay:-2.5s;" title="Adobe Photoshop"><img src="asset/Photoshop.png" alt="Adobe Photoshop" /></div>
+  <div class="card tool" style="left:1185px; top:645px; --d:.54s; --tilt:8deg; --fdur:11s; --fdelay:-6s;" title="Claude"><img src="asset/Claude.png" alt="Claude" /></div>
+
+  <!-- Figma comment pin (decorative, self-typing) -->
+  <div class="fig-comment" aria-hidden="true" style="left:1052px; top:352px;">
+    <div class="fc-pin"></div>
+    <div class="fc-card">
+      <p class="fc-text"><span id="fcType"></span><span class="fc-caret"></span></p>
+      <div class="fc-divider"></div>
+      <div class="fc-row">
+        <span class="fc-ico" title="emoji">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/>
+            <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/>
+            <path d="M8.4 14.4c.9 1.2 2.1 1.9 3.6 1.9s2.7-.7 3.6-1.9" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="fc-ico" title="mention">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="3.4"/>
+            <path d="M15.4 12.1v1c0 1.4 1 2.1 2 2.1 1.7 0 2.6-1.7 2.6-3.7C20 7.6 16.7 4.5 12.2 4.5 7.9 4.5 4.5 7.9 4.5 12.2s3.2 7.3 7.6 7.3c1.6 0 3-.4 4.2-1.1" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="fc-ico" title="image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="3.5" y="3.5" width="17" height="17" rx="3.2"/>
+            <circle cx="9" cy="9" r="1.5"/>
+            <path d="M4.2 16.6l4.4-4.2 8 7.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="fc-send" title="send">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V6M6 12l6-6 6 6"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var el = document.getElementById('fcType');
+      if(!el) return;
+      var full = "Could you make the logo a bit bigger? Larger?";
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce){ el.textContent = full; return; }
+      var i = 0, dir = 1;
+      function tick(){
+        el.textContent = full.slice(0, i);
+        if(dir > 0){
+          i++;
+          if(i > full.length){ dir = -1; setTimeout(tick, 4200); return; }   // hold when finished
+          setTimeout(tick, 55 + Math.random()*70);                           // human-ish typing
+        } else {
+          i--;
+          if(i < 0){ i = 0; dir = 1; setTimeout(tick, 1400); return; }       // pause, then retype
+          setTimeout(tick, 26);                                              // quick delete
+        }
+      }
+      setTimeout(tick, 1100);   // begin after the card's drop-in
+    })();
+  </script>
+
+  <!-- Alex Landrin — roaming collaborator cursor -->
+  <div class="figma-cursor" id="roamCursor" aria-hidden="true">
+    <svg class="arrow" width="17" height="17" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.2 1.2 L1.2 12.4 L4.3 9.4 L6.5 14.2 L8.5 13.3 L6.3 8.6 L10.6 8.6 Z" fill="var(--fig-cursor)" stroke="#fff" stroke-width="1" stroke-linejoin="round"/>
+    </svg>
+    <span class="cursor-label">Alex Landrin</span>
+  </div>
+
+  <!-- Dock (fixed, centered) -->
+  <nav class="dock" aria-label="navigation">
+    <a href="#" data-tip="Home" aria-label="Home">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10.5495 2.53189C11.3874 1.82531 12.6126 1.82531 13.4505 2.5319L20.2005 8.224C20.7074 8.65152 21 9.2809 21 9.94406L21 19.2539C21 20.2204 20.2165 21.0039 19.25 21.0039H15.75C14.7835 21.0039 14 20.2204 14 19.2539L14 14.2468C14 14.1088 13.8881 13.9968 13.75 13.9968H10.25C10.1119 13.9968 9.99999 14.1088 9.99999 14.2468L9.99999 19.2539C9.99999 20.2204 9.2165 21.0039 8.25 21.0039H4.75C3.7835 21.0039 3 20.2204 3 19.2539V9.94406C3 9.2809 3.29255 8.65152 3.79952 8.224L10.5495 2.53189ZM12.4835 3.6786C12.2042 3.44307 11.7958 3.44307 11.5165 3.6786L4.76651 9.37071C4.59752 9.51321 4.5 9.72301 4.5 9.94406L4.5 19.2539C4.5 19.392 4.61193 19.5039 4.75 19.5039H8.25C8.38807 19.5039 8.49999 19.392 8.49999 19.2539L8.49999 14.2468C8.49999 13.2803 9.2835 12.4968 10.25 12.4968H13.75C14.7165 12.4968 15.5 13.2803 15.5 14.2468L15.5 19.2539C15.5 19.392 15.6119 19.5039 15.75 19.5039H19.25C19.3881 19.5039 19.5 19.392 19.5 19.2539L19.5 9.94406C19.5 9.72301 19.4025 9.51321 19.2335 9.37071L12.4835 3.6786Z"/></svg>
+    </a>
+    <a href="about.html" data-tip="About" aria-label="About">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M17.7545 14.0002C18.9966 14.0002 20.0034 15.007 20.0034 16.2491V16.8245C20.0034 17.7188 19.6838 18.5836 19.1023 19.263C17.5329 21.0965 15.1457 22.0013 12.0004 22.0013C8.8545 22.0013 6.46849 21.0962 4.90219 19.2619C4.32242 18.583 4.00391 17.7195 4.00391 16.8267V16.2491C4.00391 15.007 5.01076 14.0002 6.25278 14.0002H17.7545ZM17.7545 15.5002H6.25278C5.83919 15.5002 5.50391 15.8355 5.50391 16.2491V16.8267C5.50391 17.3624 5.69502 17.8805 6.04287 18.2878C7.29618 19.7555 9.26206 20.5013 12.0004 20.5013C14.7387 20.5013 16.7063 19.7555 17.9627 18.2876C18.3117 17.8799 18.5034 17.361 18.5034 16.8245V16.2491C18.5034 15.8355 18.1681 15.5002 17.7545 15.5002ZM12.0004 2.00488C14.7618 2.00488 17.0004 4.24346 17.0004 7.00488C17.0004 9.76631 14.7618 12.0049 12.0004 12.0049C9.23894 12.0049 7.00036 9.76631 7.00036 7.00488C7.00036 4.24346 9.23894 2.00488 12.0004 2.00488ZM12.0004 3.50488C10.0674 3.50488 8.50036 5.07189 8.50036 7.00488C8.50036 8.93788 10.0674 10.5049 12.0004 10.5049C13.9334 10.5049 15.5004 8.93788 15.5004 7.00488C15.5004 5.07189 13.9334 3.50488 12.0004 3.50488Z"/></svg>
+    </a>
+    <a href="work.html" data-tip="Work" aria-label="Work">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V9.82777C20 9.29733 19.7893 8.78863 19.4142 8.41355L13.5864 2.58579C13.2114 2.21071 12.7027 2 12.1722 2H6ZM5.5 4C5.5 3.72386 5.72386 3.5 6 3.5H12V8C12 9.10457 12.8954 10 14 10H18.5V20C18.5 20.2761 18.2761 20.5 18 20.5H6C5.72386 20.5 5.5 20.2761 5.5 20V4ZM17.3793 8.5H14C13.7239 8.5 13.5 8.27614 13.5 8V4.62066L17.3793 8.5Z"/></svg>
+    </a>
+    <span class="sep"></span>
+    <a href="https://www.linkedin.com/in/alex-landrin-njonkoua-807309190/" target="_blank" rel="noopener" data-tip="LinkedIn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    <a href="CV_AlexLandrin.pdf" download data-tip="Download CV" aria-label="Download CV"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M18.2498 20.5009C18.664 20.5008 19 20.8365 19 21.2507C19 21.6649 18.6644 22.0008 18.2502 22.0009L5.25022 22.0047C4.836 22.0048 4.5 21.6691 4.5 21.2549C4.5 20.8407 4.83557 20.5048 5.24978 20.5047L18.2498 20.5009ZM11.6482 2.01271L11.75 2.00586C12.1297 2.00586 12.4435 2.28801 12.4932 2.65409L12.5 2.75586L12.499 16.4409L16.2208 12.7205C16.4871 12.4543 16.9038 12.4301 17.1974 12.648L17.2815 12.7206C17.5477 12.9869 17.5719 13.4036 17.354 13.6972L17.2814 13.7813L12.2837 18.7779C12.0176 19.044 11.6012 19.0683 11.3076 18.8507L11.2235 18.7782L6.22003 13.7816C5.92694 13.4889 5.92661 13.014 6.21931 12.7209C6.48539 12.4545 6.90204 12.43 7.1958 12.6477L7.27997 12.7202L10.999 16.4339L11 2.75586C11 2.37616 11.2822 2.06237 11.6482 2.01271L11.75 2.00586L11.6482 2.01271Z"/></svg></a>
+  </nav>
+
+</div>
+
+<script>
+  const stage = document.getElementById('stage');
+  const STAGE_W = 1360, STAGE_H = 780;
+  const isMobile = () => window.matchMedia('(max-width:768px)').matches;
+
+  // Scale the whole composition to fit the current window, centered.
+  function fitStage(){
+    if(isMobile()){ stage.style.transform = 'none'; stage.dataset.scale = 1; return; }  // stacked layout handles sizing
+    const pad = 48;
+    const scale = Math.min(
+      1,
+      (window.innerWidth  - pad) / STAGE_W,
+      (window.innerHeight - pad) / STAGE_H
+    );
+    stage.style.transform = `translate(-50%,-50%) scale(${scale})`;
+    stage.dataset.scale = scale;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  /* Alex Landrin — roaming collaborator cursor: glides between cards, pausing & "clicking" */
+  (function(){
+    const cur = document.getElementById('roamCursor');
+    if(!cur) return;
+    const pts = [[470,60],[250,120],[150,360],[560,470],[930,650],[1210,500],[1120,200],[330,650],[700,120]];
+    cur.style.left = pts[0][0]+'px'; cur.style.top = pts[0][1]+'px';
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      cur.style.left = '560px'; cur.style.top = '470px'; return;   // stay put for reduced-motion
+    }
+    let i = 0;
+    function next(){
+      i = (i + 1) % pts.length;
+      cur.style.left = pts[i][0] + 'px';
+      cur.style.top  = pts[i][1] + 'px';
+      setTimeout(function(){ cur.classList.add('clicking'); setTimeout(function(){ cur.classList.remove('clicking'); }, 240); }, 1150);
+      setTimeout(next, 1150 + 700 + Math.random() * 900);
+    }
+    setTimeout(next, 900);
+  })();
+
+  let zTop = 100;
+
+  document.querySelectorAll('.card').forEach(makeDraggable);
+
+  function makeDraggable(el){
+    let dragging = false, moved = false;
+    let startX, startY, origX, origY;
+    let vX = 0, vY = 0, lastX, lastY, lastT, raf = null;
+
+    el.addEventListener('pointerdown', (e) => {
+      if (isMobile()) return;   // no dragging in the stacked mobile layout
+      // Let buttons, toggles and links do their own thing.
+      if (e.target.closest('.no-drag') || e.target.closest('a')) return;
+      dragging = true; moved = false;
+      el.setPointerCapture(e.pointerId);
+      cancelAnimationFrame(raf);
+      el.classList.add('dragging');
+      el.style.zIndex = ++zTop;
+
+      startX = e.clientX; startY = e.clientY;
+      origX = parseFloat(el.style.left);
+      origY = parseFloat(el.style.top);
+      lastX = e.clientX; lastY = e.clientY; lastT = performance.now();
+    });
+
+    el.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const scale = parseFloat(stage.dataset.scale) || 1;
+      const dx = (e.clientX - startX) / scale;
+      const dy = (e.clientY - startY) / scale;
+      if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
+      el.style.left = (origX + dx) + 'px';
+      el.style.top  = (origY + dy) + 'px';
+
+      const now = performance.now();
+      const dt = Math.max(now - lastT, 8);
+      vX = ((e.clientX - lastX) / scale) / dt * 16;
+      vY = ((e.clientY - lastY) / scale) / dt * 16;
+      lastX = e.clientX; lastY = e.clientY; lastT = now;
+    });
+
+    const end = () => {
+      if (!dragging) return;
+      dragging = false;
+      el.classList.remove('dragging');
+      // A little inertia so cards glide to a stop.
+      const friction = 0.90;
+      const glide = () => {
+        vX *= friction; vY *= friction;
+        if (Math.abs(vX) < 0.15 && Math.abs(vY) < 0.15) return;
+        el.style.left = (parseFloat(el.style.left) + vX) + 'px';
+        el.style.top  = (parseFloat(el.style.top)  + vY) + 'px';
+        raf = requestAnimationFrame(glide);
+      };
+      if (moved) raf = requestAnimationFrame(glide);
+      else if (el.dataset.href){                                          // a click, not a drag
+        const h = el.dataset.href;
+        if(/^https?:\/\//i.test(h)) window.open(h, '_blank', 'noopener'); // external → new tab
+        else window.location.href = h;                                   // internal page / mailto
+      }
+    };
+    el.addEventListener('pointerup', end);
+    el.addEventListener('pointercancel', end);
+  }
+
+  // Toggle switches
+  document.querySelectorAll('.toggle').forEach(t => {
+    t.addEventListener('click', () => {
+      t.classList.toggle('on');
+      t.setAttribute('aria-checked', t.classList.contains('on'));
+    });
+  });
+
+  // (The "About me" button is a link to about.html)
+</script>
+</body>
+</html>

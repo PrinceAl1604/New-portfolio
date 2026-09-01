@@ -1,0 +1,145 @@
+/* ============================================================
+   kassirh — Theme layer  (ergonomic aliases over the raw tokens)
+   Components consume THESE names, never raw hex. tokens.css must load first.
+   Light is defined on :root; .dark remaps the same names.
+   ============================================================ */
+
+:root {
+  /* ---- Surfaces (hierarchy: page → subtle → muted → raised) ---- */
+  --bg:            var(--kx-neutral-background-1-default);   /* app canvas / white */
+  --bg-subtle:     var(--kx-grey-50);                        /* faint zones */
+  --bg-muted:      var(--kx-neutral-background-2-default);   /* grouped areas */
+  --surface:       var(--kx-white);                          /* cards / popovers */
+  --surface-hover: var(--kx-neutral-background-1-hover);
+  --surface-sunken:var(--kx-neutral-background-3-default);
+  --overlay-scrim: rgba(12,12,13,.55);
+
+  /* ---- Foreground / text ---- */
+  --fg:            var(--kx-neutral-foreground-1-default);   /* primary text */
+  --fg-secondary:  var(--kx-neutral-foreground-2-default);   /* headings-on-light */
+  --fg-muted:      var(--kx-neutral-foreground-3-default);   /* secondary text */
+  --fg-subtle:     var(--kx-neutral-foreground-4-default);   /* placeholder */
+  --fg-onbrand:    var(--kx-grey-50);
+  --fg-disabled:   var(--kx-neutral-foreground-disabled);
+
+  /* ---- Borders ---- */
+  --border:        var(--kx-neutral-border-1-primary);
+  --border-subtle: var(--kx-neutral-border-1-subtle);
+  --border-strong: var(--kx-neutral-border-2-primary);
+
+  /* ---- Brand (primary) ---- */
+  --brand:         var(--kx-primary-500);
+  --brand-hover:   var(--kx-primary-600);
+  --brand-pressed: var(--kx-primary-700);
+  --brand-subtle:  var(--kx-primary-50);
+  --brand-subtle-hover: var(--kx-primary-100);
+  --brand-fg:      var(--kx-primary-foreground-2-default);   /* text on brand-subtle */
+  --brand-onfill:  var(--kx-grey-50);                        /* text on brand fill */
+  --brand-border:  var(--kx-primary-500);
+  --brand-navy:    #11163a;   /* logo wordmark ink (paired with orange symbol) */
+  --brand-navy-hover: #1b2255;
+
+  /* ---- Status: danger / warning / success / info ---- */
+  --danger:        var(--kx-red-600);
+  --danger-hover:  var(--kx-red-700);
+  --danger-subtle: var(--kx-red-50);
+  --danger-border: var(--kx-red-500);
+  --danger-fg:     var(--kx-red-700);
+
+  --warning:       var(--kx-amber-500);
+  --warning-subtle:var(--kx-amber-50);
+  --warning-border:var(--kx-amber-500);
+  --warning-fg:    var(--kx-amber-700);
+
+  --success:       var(--kx-green-600);
+  --success-subtle:var(--kx-green-50);
+  --success-border:var(--kx-green-500);
+  --success-fg:    var(--kx-green-700);
+
+  --info:          var(--kx-blue-600, #1570ef);
+  --info-subtle:   var(--kx-blue-50, #eff8ff);
+  --info-fg:       var(--kx-blue-700, #175cd3);
+
+  /* ---- Focus ring ---- */
+  --focus-ring:    color-mix(in srgb, var(--brand) 45%, transparent);
+
+  /* ---- Radius aliases ---- */
+  --r-xs: var(--kx-radius-xs);
+  --r-sm: var(--kx-radius-s);
+  --r-md: var(--kx-radius-m);
+  --r-lg: var(--kx-radius-l);
+  --r-xl: var(--kx-radius-xl);
+  --r-full: var(--kx-radius-round);
+
+  /* ---- Elevation aliases ---- */
+  --shadow-sm: var(--kx-shadow-02);
+  --shadow-md: var(--kx-shadow-08);
+  --shadow-lg: var(--kx-shadow-16);
+  --shadow-xl: var(--kx-shadow-28);
+
+  /* ---- Spacing scale (4-pt) ---- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+}
+
+/* ============================================================
+   Dark mode — remap aliases. The raw --kx-* primitives stay fixed;
+   only the semantic aliases invert, preserving surface hierarchy
+   (bg below surface below raised).
+   ============================================================ */
+.dark {
+  --bg:            var(--kx-grey-950);
+  --bg-subtle:     #101013;
+  --bg-muted:      var(--kx-grey-900);
+  --surface:       var(--kx-grey-900);      /* card sits ABOVE muted */
+  --surface-hover: #202024;
+  --surface-sunken:var(--kx-grey-950);
+  --overlay-scrim: rgba(0,0,0,.65);
+
+  --fg:            var(--kx-grey-50);
+  --fg-secondary:  var(--kx-grey-100);
+  --fg-muted:      var(--kx-grey-400);
+  --fg-subtle:     var(--kx-grey-500);
+  --fg-onbrand:    var(--kx-grey-50);
+  --fg-disabled:   var(--kx-grey-600);
+
+  --border:        var(--kx-grey-700);
+  --border-subtle: var(--kx-grey-800);
+  --border-strong: var(--kx-grey-600);
+
+  --brand:         var(--kx-primary-500);
+  --brand-hover:   var(--kx-primary-400);
+  --brand-pressed: var(--kx-primary-300);
+  --brand-subtle:  color-mix(in srgb, var(--kx-primary-500) 16%, var(--kx-grey-900));
+  --brand-subtle-hover: color-mix(in srgb, var(--kx-primary-500) 26%, var(--kx-grey-900));
+  --brand-fg:      var(--kx-primary-300);
+  --brand-onfill:  var(--kx-grey-50);
+  --brand-navy:    #c7cdf0;   /* lightened for legibility on dark surfaces */
+  --brand-navy-hover: #dfe3fa;
+
+  --danger-subtle: color-mix(in srgb, var(--kx-red-500) 16%, var(--kx-grey-900));
+  --danger-fg:     var(--kx-red-300);
+  --warning-subtle:color-mix(in srgb, var(--kx-amber-500) 16%, var(--kx-grey-900));
+  --warning-fg:    var(--kx-amber-300);
+  --success-subtle:color-mix(in srgb, var(--kx-green-500) 16%, var(--kx-grey-900));
+  --success-fg:    var(--kx-green-300);
+  --info-subtle:   color-mix(in srgb, var(--info) 18%, var(--kx-grey-900));
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.5);
+  --shadow-lg: 0 12px 28px rgba(0,0,0,.55);
+  --shadow-xl: 0 20px 48px rgba(0,0,0,.6);
+}
+
+/* ============================================================
+   Typographic primitives — one class per tier from the token scale.
+   ============================================================ */
+.kx-h1 { font: var(--kx-fw-regular) var(--kx-fs-h1)/var(--kx-lh-h1) var(--kx-font-sans); letter-spacing:-.02em; }
+.kx-h2 { font: var(--kx-fw-regular) var(--kx-fs-h2)/var(--kx-lh-h2) var(--kx-font-sans); letter-spacing:-.02em; }
+.kx-h3 { font: var(--kx-fw-regular) var(--kx-fs-h3)/var(--kx-lh-h3) var(--kx-font-sans); letter-spacing:-.01em; }
+.kx-h4 { font: var(--kx-fw-regular) var(--kx-fs-h4)/var(--kx-lh-h4) var(--kx-font-sans); }
+.kx-headline { font: var(--kx-fw-semibold) var(--kx-fs-headline)/var(--kx-lh-headline) var(--kx-font-sans); }
+.kx-body { font: var(--kx-fw-regular) var(--kx-fs-body)/var(--kx-lh-body) var(--kx-font-sans); }
+.kx-subtitle { font: var(--kx-fw-regular) var(--kx-fs-subtitle)/var(--kx-lh-subtitle) var(--kx-font-sans); }
+.kx-caption { font: var(--kx-fw-regular) var(--kx-fs-caption)/var(--kx-lh-caption) var(--kx-font-sans); }
+.kx-footnote { font: var(--kx-fw-medium) var(--kx-fs-footnote)/var(--kx-lh-footnote) var(--kx-font-sans); }

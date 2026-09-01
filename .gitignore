@@ -1,0 +1,13 @@
+# macOS / exFAT cruft
+.DS_Store
+**/.DS_Store
+._*
+**/._*
+Thumbs.db
+
+# aiio Next.js source — only the exported static app in aiio-app/ is deployed.
+# (Its .git, node_modules, .next, out/, and the 496MB .fig live here.)
+My aiio/
+
+# logs
+*.log

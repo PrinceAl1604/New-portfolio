@@ -1,0 +1,3 @@
+:HL["/aiio-app/_next/static/css/93d832e917247959.css","style"]
+:HL["/aiio-app/_next/static/css/4ad4baef2d1bf228.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"app","param":null,"prefetchHints":4192,"slots":{"children":{"name":"table","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"law89YF359U4i8rRRpl_k"}

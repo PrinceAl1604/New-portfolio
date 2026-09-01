@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kassirh — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="guide.css" />
+  <script src="icons.js"></script>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="gd-header">
+    <div class="gd-brand">
+      <img class="gd-logo-img gd-logo-img--light" src="logo/logo.svg" alt="kassirh" />
+      <img class="gd-logo-img gd-logo-img--dark" src="logo/logo-white.svg" alt="kassirh" />
+      <div class="gd-brand__tag">Design System</div>
+    </div>
+    <div class="gd-header__right">
+      <span class="gd-version">v0.1 · Foundations</span>
+      <button id="gd-toggle" class="gd-toggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v1M12 20v1M4.2 4.2l.7.7M19.1 19.1l.7.7M3 12h1M20 12h1M4.2 19.8l.7-.7M19.1 4.9l.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+        <span class="gd-toggle__label">Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="gd-layout">
+    <!-- ===== Sidebar ===== -->
+    <nav class="gd-nav">
+      <div class="gd-nav__group">
+        <div class="gd-nav__label">Foundations</div>
+        <a href="#brand">Logo &amp; brand</a>
+        <a href="#colors">Color — palettes</a>
+        <a href="#semantic">Color — semantic roles</a>
+        <a href="#type">Typography</a>
+        <a href="#radius">Radius</a>
+        <a href="#elevation">Elevation</a>
+        <a href="#spacing">Spacing</a>
+        <a href="#icons">Icons</a>
+        <a href="#flags">Flags</a>
+      </div>
+      <div class="gd-nav__group">
+        <div class="gd-nav__label">Components</div>
+        <a href="#buttons">Buttons</a>
+        <a href="#fields">Text fields</a>
+        <a href="#selection">Selection controls</a>
+        <a href="#field-layout">Field layout</a>
+        <a href="#badges">Badges &amp; status</a>
+        <a href="#avatars">Avatars</a>
+        <a href="#cards">Cards</a>
+        <a href="#alerts">Alerts</a>
+        <a href="#breadcrumb">Breadcrumb</a>
+        <a href="#navigation">Tabs &amp; segments</a>
+        <a href="#accordion">Accordion</a>
+        <a href="#dialog">Dialog</a>
+        <a href="#table">Table</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#appshell">Navigation</a>
+      </div>
+      <div class="gd-nav__group">
+        <div class="gd-nav__label">Incoming</div>
+        <a href="#next">From Figma →</a>
+      </div>
+    </nav>
+
+    <!-- ===== Content ===== -->
+    <main class="gd-main">
+
+      <!-- Intro -->
+      <section class="gd-section" style="margin-bottom:40px">
+        <div class="gd-section__head">
+          <h1 class="gd-section__title">kassirh — Foundations</h1>
+          <p class="gd-section__desc">The first design system for kassirh, generated from the Figma token export.
+            A Fluent&nbsp;2 semantic architecture — Zinc neutrals, a <b>#f76626</b> primary, Manrope type — with
+            light &amp; dark themes. Every swatch below reads a live CSS variable, so this page is always the source of truth.
+            Drop new Figma links in and components land under <b>Components</b>.</p>
+          <a class="kx-btn kx-btn--secondary" href="https://www.figma.com/design/XBRcTRIHhQw5E0uRcnenhq/Design-System-KassiRH?node-id=4001-297&amp;t=LjeyQ5shisSXBZpI-1" target="_blank" rel="noopener" style="margin-top:20px; align-self:flex-start; gap:9px; text-decoration:none;">
+            <svg width="14" height="21" viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+            Design System in Figma
+          </a>
+        </div>
+      </section>
+
+      <!-- Brand / logo -->
+      <section class="gd-section" id="brand">
+        <div class="gd-section__head">
+          <h2 class="gd-section__title">Logo &amp; brand</h2>
+          <p class="gd-section__desc">The kassirh mark: an orange symbol (the stylised <b>k</b>) with the wordmark set in brand navy <b>#11163A</b>. Use the full logo where space allows; the symbol alone for avatars, favicons and tight spots.</p>
+        </div>
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col">
+          <div class="gd-logos">
+            <div class="gd-logo-tile gd-logo-tile--light"><img src="logo/logo.svg" alt="kassirh primary logo" /></div>
+            <div class="gd-logo-tile gd-logo-tile--navy"><img src="logo/logo-white.svg" alt="kassirh logo, white" /></div>
+          </div>
+        </div><div class="gd-story__label">Primary logo — on light · on brand navy</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <div class="gd-symbols">
+            <div class="gd-symbol"><div class="gd-symbol__well gd-symbol__well--light"><img src="logo/symbol-orange.svg" alt="orange symbol" /></div><span class="gd-symbol__cap">Orange<br>on light</span></div>
+            <div class="gd-symbol"><div class="gd-symbol__well gd-symbol__well--orange"><img src="logo/symbol-navy.svg" alt="navy symbol" /></div><span class="gd-symbol__cap">Navy<br>on peach</span></div>
+            <div class="gd-symbol"><div class="gd-symbol__well gd-symbol__well--navy"><img src="logo/symbol-white.svg" alt="white symbol" /></div><span class="gd-symbol__cap">White<br>on navy</span></div>
+          </div>
+        </div><div class="gd-story__label">Symbol — colour variants</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col">
+          <div class="gd-row" style="gap:12px">
+            <span class="kx-badge kx-badge--outline" style="background:#F76626;color:#fff;border:0">Orange · #F76626</span>
+            <span class="kx-badge kx-badge--outline" style="background:#11163A;color:#fff;border:0">Navy · #11163A</span>
+          </div>
+          <div class="gd-usage">
+            <div class="gd-usage__item gd-usage__item--do"><b>Do</b><span>Keep clear space around the mark equal to the height of the symbol's dot. Use the white logo on the orange or navy brand colours.</span></div>
+            <div class="gd-usage__item gd-usage__item--dont"><b>Don't</b><span>Recolour, stretch, rotate or add effects to the mark. Don't place the coloured logo on a busy or low-contrast background.</span></div>
+          </div>
+        </div><div class="gd-story__label">Brand colours &amp; usage</div></div>
+      </section>
+
+      <!-- Colors -->
+      <section class="gd-section" id="colors">
+        <div class="gd-section__head">
+          <h2 class="gd-section__title">Color — palettes</h2>
+          <p class="gd-section__desc">Primitive ramps (50→950). These are raw values; components never touch them directly — they consume the semantic roles below.</p>
+        </div>
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" data-live="scales"></div>
+          <div class="gd-story__label">--kx-&lt;family&gt;-&lt;step&gt;</div></div>
+      </section>
+
+      <!-- Semantic -->
+      <section class="gd-section" id="semantic">
+        <div class="gd-section__head">
+          <h2 class="gd-section__title">Color — semantic roles</h2>
+          <p class="gd-section__desc">The ergonomic layer components actually use. Names stay stable across light &amp; dark — flip the theme to watch the values remap while the roles hold.</p>
+        </div>
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" data-live="semantic"></div>
+          <div class="gd-story__label">theme.css aliases → tokens.css</div></div>
+      </section>
+
+      <!-- Type -->
+      <section class="gd-section" id="type">
+        <div class="gd-section__head">
+          <h2 class="gd-section__title">Typography</h2>
+          <p class="gd-section__desc">Manrope, nine-tier scale from the tokens (h1 49px → footnote 10px). Use the <code>.kx-*</code> classes.</p>
+        </div>
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" data-live="type" style="gap:0"></div></div>
+      </section>
+
+      <!-- Radius -->
+      <section class="gd-section" id="radius">
+        <div class="gd-section__head"><h2 class="gd-section__title">Radius</h2>
+          <p class="gd-section__desc">Corner ramp — default surface radius is <b>md · 8px</b>.</p></div>
+        <div class="gd-story"><div class="gd-story__frame"><div class="gd-tiles" data-live="radius" style="width:100%"></div></div></div>
+      </section>
+
+      <!-- Elevation -->
+      <section class="gd-section" id="elevation">
+        <div class="gd-section__head"><h2 class="gd-section__title">Elevation</h2>
+          <p class="gd-section__desc">Drop-shadow tokens for raised surfaces, menus, dialogs and popovers.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="background:var(--bg-subtle)"><div class="gd-tiles" data-live="shadows" style="width:100%"></div></div></div>
+      </section>
+
+      <!-- Spacing -->
+      <section class="gd-section" id="spacing">
+        <div class="gd-section__head"><h2 class="gd-section__title">Spacing</h2>
+          <p class="gd-section__desc">4-point spacing scale for padding, gaps and layout rhythm.</p></div>
+        <div class="gd-story"><div class="gd-story__frame"><div class="gd-tiles" data-live="spacing" style="width:100%"></div></div></div>
+      </section>
+
+      <!-- Icons -->
+      <section class="gd-section" id="icons">
+        <div class="gd-section__head"><h2 class="gd-section__title">Icons</h2>
+          <p class="gd-section__desc">The system uses <b>Fluent UI System Icons</b> (Regular weight, MIT). Icons render at 16px in components and inherit <code>currentColor</code>. Reference one with <code>&lt;span class="kx-icon" data-icon="info"&gt;&lt;/span&gt;</code>; the set grows as components need glyphs.</p></div>
+        <div class="gd-story"><div class="gd-story__frame"><div data-live="icons" style="width:100%"></div></div>
+          <div class="gd-story__label">Fluent regular · currentColor · hydrated from icons.js</div></div>
+      </section>
+
+      <!-- Flags -->
+      <section class="gd-section" id="flags">
+        <div class="gd-section__head"><h2 class="gd-section__title">Flags</h2>
+          <p class="gd-section__desc">Round 24px country flags for phone inputs, language pickers and nationality fields. The complete set (~250 flags) is an imported asset library — a handful relevant to kassirh's market are shown here; wire the rest from a flag-icon package rather than hand-drawing each.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:20px;align-items:flex-end">
+          <div class="gd-tile" style="width:auto"><span class="kx-flag"><span style="background:linear-gradient(90deg,#009e60 33.33%,#fcd116 33.33% 66.66%,#3a75c4 66.66%)"></span></span><span class="gd-tile__label">Gabon</span></div>
+          <div class="gd-tile" style="width:auto"><span class="kx-flag"><span style="background:linear-gradient(90deg,#f77f00 33.33%,#fff 33.33% 66.66%,#009e60 66.66%)"></span></span><span class="gd-tile__label">Ivory Coast</span></div>
+          <div class="gd-tile" style="width:auto"><span class="kx-flag"><span style="background:linear-gradient(90deg,#0055A4 33.33%,#fff 33.33% 66.66%,#EF4135 66.66%)"></span></span><span class="gd-tile__label">France</span></div>
+          <div class="gd-tile" style="width:auto"><span class="kx-flag"><span style="background:linear-gradient(90deg,#008751 33.33%,#fff 33.33% 66.66%,#008751 66.66%)"></span></span><span class="gd-tile__label">Nigeria</span></div>
+          <div class="gd-tile" style="width:auto"><span class="kx-flag kx-flag--rect"><span style="background:linear-gradient(180deg,#000 33.33%,#DD0000 33.33% 66.66%,#FFCE00 66.66%)"></span></span><span class="gd-tile__label">Germany</span></div>
+        </div><div class="gd-story__label">24px round · rectangular variant — sample of the flag set</div></div>
+      </section>
+
+      <!-- ============ COMPONENTS ============ -->
+
+      <!-- Buttons -->
+      <section class="gd-section" id="buttons">
+        <div class="gd-section__head"><h2 class="gd-section__title">Buttons</h2>
+          <p class="gd-section__desc">A button triggers an action — submitting a form, opening a dialog, confirming a choice. The variant signals how much weight the action carries: one <b>primary</b> (brand-filled) action per view, <b>secondary</b> for the common alternative, <b>ghost</b> and <b>link</b> for low-emphasis actions, and <b>danger</b> for destructive ones. Every button answers to hover, press and keyboard focus, and greys out when its action isn't available.</p></div>
+        <div class="gd-story"><div class="gd-story__frame">
+          <button class="kx-btn kx-btn--primary">Primary</button>
+          <button class="kx-btn kx-btn--secondary">Secondary</button>
+          <button class="kx-btn kx-btn--outline">Outline</button>
+          <button class="kx-btn kx-btn--ghost">Ghost</button>
+          <button class="kx-btn kx-btn--destructive">Destructive</button>
+        </div><div class="gd-story__label">Variants</div></div>
+        <div class="gd-story"><div class="gd-story__frame">
+          <button class="kx-btn kx-btn--primary kx-btn--mini">Mini</button>
+          <button class="kx-btn kx-btn--primary kx-btn--sm">Small</button>
+          <button class="kx-btn kx-btn--primary">Default</button>
+          <button class="kx-btn kx-btn--primary kx-btn--lg">Large</button>
+          <button class="kx-btn kx-btn--primary kx-btn--round">Round</button>
+        </div><div class="gd-story__label">Sizes · roundness</div></div>
+        <div class="gd-story"><div class="gd-story__frame">
+          <button class="kx-btn kx-btn--primary"><svg class="kx-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add</button>
+          <button class="kx-btn kx-btn--secondary kx-btn--icon" aria-label="More"><svg class="kx-btn__icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+          <button class="kx-btn kx-btn--primary" disabled>Disabled</button>
+          <div class="kx-btn-group">
+            <button class="kx-btn kx-btn--secondary">Day</button>
+            <button class="kx-btn kx-btn--secondary">Week</button>
+            <button class="kx-btn kx-btn--secondary">Month</button>
+          </div>
+        </div><div class="gd-story__label">Icon · disabled · button group</div></div>
+        <div class="gd-story"><div class="gd-story__frame">
+          <button class="kx-btn kx-btn--primary kx-btn--icon" aria-label="Add"><span class="kx-icon kx-btn__icon" data-icon="dismiss"></span></button>
+          <button class="kx-btn kx-btn--secondary kx-btn--icon" aria-label="Options"><span class="kx-icon kx-btn__icon" data-icon="more_horizontal"></span></button>
+          <button class="kx-btn kx-btn--outline kx-btn--icon" aria-label="Info"><span class="kx-icon kx-btn__icon" data-icon="info"></span></button>
+          <button class="kx-btn kx-btn--ghost kx-btn--icon" aria-label="Close"><span class="kx-icon kx-btn__icon" data-icon="dismiss"></span></button>
+          <button class="kx-btn kx-btn--destructive kx-btn--icon" aria-label="Delete"><span class="kx-icon kx-btn__icon" data-icon="dismiss"></span></button>
+          <button class="kx-btn kx-btn--primary kx-btn--icon kx-btn--round" aria-label="Add"><span class="kx-icon kx-btn__icon" data-icon="chevron_right"></span></button>
+          <button class="kx-btn kx-btn--secondary kx-btn--icon kx-btn--mini" aria-label="More"><span class="kx-icon kx-btn__icon" data-icon="more_horizontal" data-size="14"></span></button>
+        </div><div class="gd-story__label">Icon buttons — <code>.kx-btn--icon</code> × any variant / size / round</div></div>
+      </section>
+
+      <!-- Fields -->
+      <section class="gd-section" id="fields">
+        <div class="gd-section__head"><h2 class="gd-section__title">Text fields</h2>
+          <p class="gd-section__desc">Text fields let the user enter and edit a value — a name, an email, a longer note. Each pairs a <b>label</b> with its control and can carry a <b>hint</b> below; when validation fails, the border turns red and the hint becomes the error message. Fields highlight on focus and grey out when disabled, so their state is always readable at a glance.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:24px">
+          <label class="kx-field" style="width:240px"><span class="kx-label">Full name<span class="kx-req">*</span></span>
+            <input class="kx-input" placeholder="Carine Nanté" /></label>
+          <label class="kx-field" style="width:240px"><span class="kx-label">Department</span>
+            <select class="kx-select"><option>Human Resources</option><option>Finance</option><option>Operations</option></select></label>
+          <label class="kx-field" style="width:240px"><span class="kx-label">Email</span>
+            <div class="kx-input-group"><svg class="kx-input-group__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <input class="kx-input" placeholder="name@company.com" /></div></label>
+        </div><div class="gd-story__label">Default · select · with icon</div></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:24px">
+          <label class="kx-field" style="width:240px"><span class="kx-label">Phone<span class="kx-req">*</span></span>
+            <input class="kx-input is-error" value="+241 0" /><span class="kx-hint kx-hint--error">Invalid number.</span></label>
+          <label class="kx-field" style="width:240px"><span class="kx-label">Job title (disabled)</span>
+            <input class="kx-input" value="HR Assistant" disabled /></label>
+          <label class="kx-field" style="width:280px"><span class="kx-label">Note</span>
+            <textarea class="kx-textarea" placeholder="Add a note…"></textarea></label>
+        </div><div class="gd-story__label">Error · disabled · textarea</div></div>
+      </section>
+
+      <!-- Selection -->
+      <section class="gd-section" id="selection">
+        <div class="gd-section__head"><h2 class="gd-section__title">Selection controls</h2>
+          <p class="gd-section__desc">Selection controls capture a choice. Use a <b>checkbox</b> for independent on/off options, a <b>radio</b> group when exactly one option must be chosen from a set, and a <b>switch</b> to flip a setting that takes effect immediately. Each shows its state clearly and responds to both click and keyboard.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:28px">
+          <label class="kx-check"><input type="checkbox" checked /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Contract signed</label>
+          <label class="kx-check"><input type="checkbox" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Probation period</label>
+          <label class="kx-check kx-check--radio"><input type="radio" name="r" checked /><span class="kx-check__box"></span>CDI</label>
+          <label class="kx-check kx-check--radio"><input type="radio" name="r" /><span class="kx-check__box"></span>CDD</label>
+          <label class="kx-switch"><input type="checkbox" checked /><span class="kx-switch__track"></span><span class="kx-caption" style="color:var(--fg-secondary)">Notifications</span></label>
+        </div><div class="gd-story__label">Checkbox · radio · switch</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="gap:28px">
+          <label class="kx-check"><input type="checkbox" data-indeterminate /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Indeterminate</label>
+          <label class="kx-check kx-check--error"><input type="checkbox" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Error</label>
+          <label class="kx-check kx-check--error"><input type="checkbox" checked /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Error checked</label>
+          <label class="kx-check"><input type="checkbox" disabled /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Disabled</label>
+        </div><div class="gd-story__label">Checkbox states — indeterminate · error · disabled</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="gap:16px">
+          <label class="kx-check-card">
+            <span class="kx-check"><input type="checkbox" checked /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></span>
+            <span class="kx-check-card__content"><span class="kx-check-card__line1">Email notifications</span><span class="kx-check-card__line2">Get a summary every morning.</span></span>
+          </label>
+          <label class="kx-check-card">
+            <span class="kx-check"><input type="checkbox" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></span>
+            <span class="kx-check-card__content"><span class="kx-check-card__line1">SMS notifications</span><span class="kx-check-card__line2">Urgent alerts only.</span></span>
+          </label>
+        </div><div class="gd-story__label">Rich checkbox — selectable card</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="gap:16px">
+          <label class="kx-check-field">
+            <span class="kx-check"><input type="checkbox" checked /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></span>
+            <span class="kx-check-field__content"><span class="kx-check-field__label">Accept the terms</span><span class="kx-check-field__desc">You accept our terms of service and privacy policy.</span></span>
+          </label>
+          <label class="kx-check-field">
+            <span class="kx-check"><input type="checkbox" disabled /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></span>
+            <span class="kx-check-field__content"><span class="kx-check-field__label">Disabled option</span><span class="kx-check-field__desc">This option isn't available on your plan.</span></span>
+          </label>
+        </div><div class="gd-story__label">Checkbox with label + description</div></div>
+      </section>
+
+      <!-- Field layout -->
+      <section class="gd-section" id="field-layout">
+        <div class="gd-section__head"><h2 class="gd-section__title">Field layout</h2>
+          <p class="gd-section__desc">A field pairs a label with its control so the two always read as one unit. Lay fields out <b>vertically</b> — label above the control — for most forms and narrow columns; switch to <b>horizontal</b>, with the label in a fixed column beside the control, for dense settings screens where the eye scans a list of properties. The same controls slot into either orientation — text, select, radio, textarea, checkbox, slider.</p></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="gap:20px;max-width:340px">
+          <label class="kx-field"><span class="kx-label">Job title</span><input class="kx-input" value="HR Assistant" /></label>
+          <label class="kx-field"><span class="kx-label">Department</span><select class="kx-select"><option>Human Resources</option><option>Finance</option><option>Operations</option></select></label>
+          <div class="kx-field"><span class="kx-label">Contract type</span>
+            <div class="kx-field__group">
+              <label class="kx-check kx-check--radio"><input type="radio" name="vc" checked /><span class="kx-check__box"></span>CDI</label>
+              <label class="kx-check kx-check--radio"><input type="radio" name="vc" /><span class="kx-check__box"></span>CDD</label>
+              <label class="kx-check kx-check--radio"><input type="radio" name="vc" /><span class="kx-check__box"></span>Stage</label>
+            </div>
+          </div>
+          <label class="kx-field"><span class="kx-label">Note</span><textarea class="kx-textarea" placeholder="Write your message here."></textarea></label>
+          <div class="kx-field"><span class="kx-label">Access</span>
+            <div class="kx-field__group">
+              <label class="kx-check"><input type="checkbox" checked /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Payroll</label>
+              <label class="kx-check"><input type="checkbox" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Schedules</label>
+              <label class="kx-check"><input type="checkbox" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Documents</label>
+            </div>
+          </div>
+          <label class="kx-field"><span class="kx-label">Occupancy rate</span><input type="range" class="kx-slider" min="0" max="100" value="60" /></label>
+        </div><div class="gd-story__label">Vertical — label above control</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="gap:16px;max-width:360px">
+          <label class="kx-field kx-field--horizontal"><span class="kx-label">Job title</span><input class="kx-input" value="HR Assistant" /></label>
+          <label class="kx-field kx-field--horizontal"><span class="kx-label">Department</span><select class="kx-select"><option>Human Resources</option><option>Finance</option></select></label>
+          <div class="kx-field kx-field--horizontal kx-field--top"><span class="kx-label">Contract type</span>
+            <div class="kx-field__group">
+              <label class="kx-check kx-check--radio"><input type="radio" name="hc" checked /><span class="kx-check__box"></span>CDI</label>
+              <label class="kx-check kx-check--radio"><input type="radio" name="hc" /><span class="kx-check__box"></span>CDD</label>
+            </div>
+          </div>
+          <label class="kx-field kx-field--horizontal kx-field--top"><span class="kx-label">Note</span><textarea class="kx-textarea" placeholder="Write your message here."></textarea></label>
+          <div class="kx-field kx-field--horizontal kx-field--top"><span class="kx-label">Access</span>
+            <div class="kx-field__group">
+              <label class="kx-check"><input type="checkbox" checked /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Payroll</label>
+              <label class="kx-check"><input type="checkbox" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>Schedules</label>
+            </div>
+          </div>
+          <label class="kx-field kx-field--horizontal"><span class="kx-label">Rate</span><input type="range" class="kx-slider" min="0" max="100" value="40" /></label>
+        </div><div class="gd-story__label">Horizontal — fixed label column (120px) beside the control</div></div>
+      </section>
+
+      <!-- Badges -->
+      <section class="gd-section" id="badges">
+        <div class="gd-section__head"><h2 class="gd-section__title">Badges &amp; status</h2>
+          <p class="gd-section__desc">A badge is a small label that tags something in a word or two. The <b>Badge</b> comes in five style weights — from a loud primary fill down to a quiet ghost — so it can sit anywhere from a headline callout to an inline tag, and can carry an icon or act as a removable, focusable chip. For fixed states an item simply <i>is</i> — active, expired, on trial — reach for a <b>Status</b> pill, where colour does the talking.</p></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <span class="kx-badge kx-badge--primary">Primary</span>
+          <span class="kx-badge kx-badge--secondary">Secondary</span>
+          <span class="kx-badge kx-badge--outline">Outline</span>
+          <span class="kx-badge kx-badge--ghost">Ghost</span>
+          <span class="kx-badge kx-badge--destructive">Destructive</span>
+        </div><div class="gd-story__label">Badge — variants</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <span class="kx-badge kx-badge--primary kx-badge--round">Round</span>
+          <span class="kx-badge kx-badge--secondary kx-badge--round">Round</span>
+          <span class="kx-badge kx-badge--primary"><span class="kx-badge__icon kx-icon" data-icon="success"></span>Verified</span>
+          <span class="kx-badge kx-badge--secondary">Filter<span class="kx-badge__icon kx-icon" data-icon="dismiss"></span></span>
+          <button class="kx-badge kx-badge--outline">Focusable<span class="kx-badge__icon kx-icon" data-icon="dismiss"></span></button>
+        </div><div class="gd-story__label">Round shape · left/right icons · removable chip (Tab to focus)</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="align-items:center">
+          <span class="kx-badge kx-badge--dark">Dark</span>
+          <span class="kx-count">8</span>
+          <span class="kx-count kx-count--secondary">12</span>
+          <span class="kx-count kx-count--outline">3</span>
+          <span class="kx-count kx-count--destructive">99+</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;color:var(--fg-secondary);font:var(--kx-fw-medium) var(--kx-fs-subtitle)/1 var(--kx-font-sans)">Notifications <span class="kx-count kx-count--destructive">5</span></span>
+        </div><div class="gd-story__label">Dark badge · count / notification badges</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <span class="kx-status kx-status--brand">New</span>
+          <span class="kx-status kx-status--success"><span class="kx-status__dot"></span>Active</span>
+          <span class="kx-status kx-status--warning">Pending</span>
+          <span class="kx-status kx-status--danger">Expired</span>
+          <span class="kx-status kx-status--info">CDI</span>
+          <span class="kx-status">Neutral</span>
+          <span class="kx-status kx-status--outline">Outline</span>
+        </div><div class="gd-story__label">Status — semantic pills (Active, Expired, …)</div></div>
+      </section>
+
+      <!-- Avatars -->
+      <section class="gd-section" id="avatars">
+        <div class="gd-section__head"><h2 class="gd-section__title">Avatars</h2>
+          <p class="gd-section__desc">An avatar stands in for a person, showing their photo or falling back to their initials when there's no image. It makes rows and headers scannable — a face or a monogram registers faster than a name. Four sizes span dense tables to profile headers, in a round or soft-square shape. When several people share a thing — a team, a shift, a document — stack the avatars into an overlapping group, capped with a <b>+N</b> count.</p></div>
+        <div class="gd-story"><div class="gd-story__frame">
+          <span class="kx-avatar kx-avatar--xs">CN</span>
+          <span class="kx-avatar kx-avatar--sm">CN</span>
+          <span class="kx-avatar kx-avatar--md">CN</span>
+          <span class="kx-avatar kx-avatar--lg">CN</span>
+        </div><div class="gd-story__label">Sizes — xs 20 · sm 24 · md 32 · lg 40 (initials)</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <span class="kx-avatar kx-avatar--lg">CN</span>
+          <span class="kx-avatar kx-avatar--lg kx-avatar--square">CN</span>
+          <span class="kx-avatar kx-avatar--md kx-avatar--square">SM</span>
+          <span class="kx-avatar kx-avatar--sm kx-avatar--square">JD</span>
+        </div><div class="gd-story__label">Shape — round vs. square (roundrect)</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <span class="kx-avatar kx-avatar--lg"><img src="../assets/avatar-jeremy.png" alt="" onerror="this.parentNode.textContent='JD'" /></span>
+          <span class="kx-avatar kx-avatar--md"><img src="../assets/avatar-jamilia.png" alt="" onerror="this.parentNode.textContent='JA'" /></span>
+          <span class="kx-avatar kx-avatar--lg kx-avatar--square"><img src="../assets/avatar-jeremy.png" alt="" onerror="this.parentNode.textContent='JD'" /></span>
+        </div><div class="gd-story__label">Photo — round &amp; square</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="gap:28px">
+          <div class="kx-avatar-stack">
+            <span class="kx-avatar kx-avatar--md"><img src="../assets/avatar-jeremy.png" alt="" onerror="this.parentNode.textContent='JD'" /></span>
+            <span class="kx-avatar kx-avatar--md"><img src="../assets/avatar-jamilia.png" alt="" onerror="this.parentNode.textContent='JA'" /></span>
+            <span class="kx-avatar kx-avatar--md">CN</span>
+            <span class="kx-avatar kx-avatar--md kx-avatar-stack__more">+3</span>
+          </div>
+          <div class="kx-avatar-stack">
+            <span class="kx-avatar kx-avatar--lg"><img src="../assets/avatar-jamilia.png" alt="" onerror="this.parentNode.textContent='JA'" /></span>
+            <span class="kx-avatar kx-avatar--lg"><img src="../assets/avatar-jeremy.png" alt="" onerror="this.parentNode.textContent='JD'" /></span>
+            <span class="kx-avatar kx-avatar--lg">SM</span>
+          </div>
+        </div><div class="gd-story__label">Stack — overlapping group with a white ring (md · lg), optional +N</div></div>
+      </section>
+
+      <!-- Cards -->
+      <section class="gd-section" id="cards">
+        <div class="gd-section__head"><h2 class="gd-section__title">Cards</h2>
+          <p class="gd-section__desc">A card gathers related content and actions onto one surface, lifting it off the page so it reads as a distinct unit. Use it for an item in a list, a summary stat, or any self-contained block — the header holds a title, the body the content, the footer its actions. A card can be static, or behave as a link into a detail view.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:24px;align-items:flex-start">
+          <div class="kx-card" style="width:340px">
+            <div class="kx-card__header"><div class="kx-card__title">Contact us</div><div class="kx-card__sub">Write to us and we'll get back to you as soon as possible.</div></div>
+            <div class="kx-card__body">
+              <label class="kx-field"><span class="kx-label">Name</span><input class="kx-input" placeholder="Your name…" /></label>
+              <label class="kx-field"><span class="kx-label">Email</span><input class="kx-input" placeholder="Your email address…" /></label>
+              <label class="kx-field"><span class="kx-label">Message</span><textarea class="kx-textarea" placeholder="Write your message here."></textarea></label>
+              <button class="kx-btn kx-btn--primary kx-btn--block">Send</button>
+            </div>
+          </div>
+          <div class="kx-card" style="width:340px">
+            <div class="kx-card__header"><div class="kx-card__title">Libreville office</div><div class="kx-card__sub">This is a card with an image.</div></div>
+            <div class="kx-card__media"><img src="../assets/dashboard-preview.png" alt="" onerror="this.parentNode.style.display='none'" /></div>
+            <div class="kx-card__footer kx-card__footer--between">
+              <div class="gd-row" style="gap:6px"><span class="kx-badge kx-badge--secondary">HR</span><span class="kx-badge kx-badge--secondary">Payroll</span></div>
+              <span class="kx-card__title">135 000 €</span>
+            </div>
+          </div>
+          <div class="kx-card" style="width:340px">
+            <div class="kx-card__header"><div class="kx-card__title">Meeting notes</div><div class="kx-card__sub">January 9, 2026</div></div>
+            <div class="kx-card__body">
+              <p class="kx-subtitle" style="color:var(--fg-secondary);line-height:1.5">Dashboard redesign, mobile-responsive first&nbsp;: new analytics widgets, simplified navigation, dark mode. Due&nbsp;: 6 weeks.</p>
+              <div class="kx-avatar-stack">
+                <span class="kx-avatar kx-avatar--md"><img src="../assets/avatar-jeremy.png" alt="" onerror="this.parentNode.textContent='JD'" /></span>
+                <span class="kx-avatar kx-avatar--md"><img src="../assets/avatar-jamilia.png" alt="" onerror="this.parentNode.textContent='JA'" /></span>
+                <span class="kx-avatar kx-avatar--md">CN</span>
+              </div>
+            </div>
+          </div>
+        </div><div class="gd-story__label">Form card · media card · notes card — header / content / footer slots</div></div>
+      </section>
+
+      <!-- Alerts -->
+      <section class="gd-section" id="alerts">
+        <div class="gd-section__head"><h2 class="gd-section__title">Alert</h2>
+          <p class="gd-section__desc">An alert is an inline message that flags a status or piece of information in place, without interrupting the task the way a dialog does — the user reads it and keeps going. Use <b>Neutral</b> for ordinary information and <b>Error</b> to surface a problem; add a second line for detail, or a button to offer the next step. It stays quiet by design: a neutral surface where only the text and icon carry the tone, so several can sit on a page without shouting.</p></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="max-width:400px">
+          <div class="kx-alert">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="info"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">Sync complete</p></div>
+            </div>
+          </div>
+          <div class="kx-alert kx-alert--error">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="error"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">The file could not be imported</p></div>
+            </div>
+          </div>
+        </div><div class="gd-story__label">Types — Neutral · Error (icon + single line)</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="max-width:400px">
+          <div class="kx-alert">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="info"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">New reporting deadline</p><p class="kx-alert__line2">CNSS must be filed before the 15th of the month.</p></div>
+            </div>
+            <button class="kx-alert__action">View</button>
+          </div>
+          <div class="kx-alert kx-alert--error">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="error"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">Save failed</p><p class="kx-alert__line2">Check your connection, then try again.</p></div>
+            </div>
+            <button class="kx-alert__action">Retry</button>
+          </div>
+        </div><div class="gd-story__label">Two lines + action button</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="max-width:400px">
+          <div class="kx-alert kx-alert--success">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="success"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">Employee created</p><p class="kx-alert__line2">Carine Nanté has been added to your organization.</p></div>
+            </div>
+          </div>
+          <div class="kx-alert kx-alert--warning">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="warning"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">Missing information</p><p class="kx-alert__line2">Select a document type before generating.</p></div>
+            </div>
+          </div>
+          <div class="kx-alert kx-alert--info">
+            <div class="kx-alert__main">
+              <span class="kx-alert__icon kx-icon" data-icon="info"></span>
+              <div class="kx-alert__content"><p class="kx-alert__line1">Tip</p><p class="kx-alert__line2">Import your employees in bulk via a CSV file.</p></div>
+            </div>
+          </div>
+        </div><div class="gd-story__label">Extensions — success · warning · info</div></div>
+      </section>
+
+      <!-- Breadcrumb -->
+      <section class="gd-section" id="breadcrumb">
+        <div class="gd-section__head"><h2 class="gd-section__title">Breadcrumb</h2>
+          <p class="gd-section__desc">A breadcrumb shows where the current page sits in the hierarchy and lets the user step back up it. Use it on deep pages — an employee's file inside a team inside the org — so people always know their location and can climb back with one click. Each level up to the last is a link; the current page is the bold, non-clickable end of the trail.</p></div>
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col" style="gap:20px">
+          <nav class="kx-breadcrumb" aria-label="Breadcrumb">
+            <a class="kx-breadcrumb__item" href="#">Home</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <span class="kx-breadcrumb__current" aria-current="page">My Employees</span>
+          </nav>
+          <nav class="kx-breadcrumb" aria-label="Breadcrumb">
+            <a class="kx-breadcrumb__item" href="#">Home</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <a class="kx-breadcrumb__item" href="#">My Employees</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <a class="kx-breadcrumb__item" href="#">Operations</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <span class="kx-breadcrumb__current" aria-current="page">Carine Nanté</span>
+          </nav>
+          <nav class="kx-breadcrumb" aria-label="Breadcrumb">
+            <a class="kx-breadcrumb__item" href="#">Home</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <a class="kx-breadcrumb__item" href="#">My Employees</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <a class="kx-breadcrumb__item" href="#">Operations</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <a class="kx-breadcrumb__item" href="#">Carine Nanté</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <a class="kx-breadcrumb__item" href="#">Contracts</a>
+            <span class="kx-breadcrumb__sep kx-icon" data-icon="chevron_right" data-size="12"></span>
+            <span class="kx-breadcrumb__current" aria-current="page">CDI 2026</span>
+          </nav>
+        </div><div class="gd-story__label">2 · 4 · 6 levels — ancestors link, current page is bold</div></div>
+      </section>
+
+      <!-- Navigation -->
+      <section class="gd-section" id="navigation">
+        <div class="gd-section__head"><h2 class="gd-section__title">Tabs &amp; segments</h2>
+          <p class="gd-section__desc">Both switch between sibling views without navigating away. Use <b>underline tabs</b> to move through the sections of a record — an employee's identity, contracts, documents — and a <b>segmented control</b> for a compact switch between a few views of the same data, like list, grid or planning. The active choice is always marked so the user knows where they are.</p></div>
+        <div class="gd-story"><div class="gd-story__frame gd-story__frame--col">
+          <div class="kx-tabs">
+            <button class="kx-tab is-active">Identity</button>
+            <button class="kx-tab">Contracts</button>
+            <button class="kx-tab">Documents</button>
+            <button class="kx-tab">Administrative</button>
+          </div>
+          <div class="kx-segment" style="align-self:flex-start">
+            <button class="kx-segment__item is-active">List</button>
+            <button class="kx-segment__item">Grid</button>
+            <button class="kx-segment__item">Schedule</button>
+          </div>
+        </div><div class="gd-story__label">Tabs · segmented control</div></div>
+      </section>
+
+      <!-- Accordion -->
+      <section class="gd-section" id="accordion">
+        <div class="gd-section__head"><h2 class="gd-section__title">Accordion</h2>
+          <p class="gd-section__desc">An accordion folds a long page into collapsible sections, so the user sees a scannable list of headers and opens only what they need. It suits FAQs, grouped settings, or any set of topics browsed one at a time. Clicking a header expands its panel and rotates the chevron; in <b>single-open</b> mode, opening one closes the rest. Headers are real buttons — reachable by <b>Tab</b>, with a visible focus ring.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="padding:0 28px;display:block">
+          <div class="kx-accordion" data-single>
+            <div class="kx-accordion__item is-open">
+              <button class="kx-accordion__trigger" aria-expanded="true">
+                <span class="kx-accordion__label">How do I add an employee?</span>
+                <span class="kx-accordion__icon" data-icon="chevron_down"></span>
+              </button>
+              <div class="kx-accordion__panel" role="region"><div><div class="kx-accordion__panel-inner">From the dashboard, click "Add an employee", fill in the basic identity, then the job information. The record appears right away under "My Employees".</div></div></div>
+            </div>
+            <div class="kx-accordion__item">
+              <button class="kx-accordion__trigger" aria-expanded="false">
+                <span class="kx-accordion__label">Which contract types are supported?</span>
+                <span class="kx-accordion__icon" data-icon="chevron_down"></span>
+              </button>
+              <div class="kx-accordion__panel" role="region"><div><div class="kx-accordion__panel-inner">CDI, CDD and the main local contracts. The 5-step contract form automatically generates a document ready to sign.</div></div></div>
+            </div>
+            <div class="kx-accordion__item">
+              <button class="kx-accordion__trigger" aria-expanded="false">
+                <span class="kx-accordion__label">How do I generate an HR document?</span>
+                <span class="kx-accordion__icon" data-icon="chevron_down"></span>
+              </button>
+              <div class="kx-accordion__panel" role="region"><div><div class="kx-accordion__panel-inner">Open the employee's profile, then "Generate a document". Choose the type (certificate, work certificate…) and the document is added to the Documents tab.</div></div></div>
+            </div>
+          </div>
+        </div><div class="gd-story__label">Single-open · states: closed / open / focus (Tab to a trigger)</div></div>
+      </section>
+
+      <!-- Dialog -->
+      <section class="gd-section" id="dialog">
+        <div class="gd-section__head"><h2 class="gd-section__title">Dialog</h2>
+          <p class="gd-section__desc">A dialog interrupts the user with a single focused decision, floating a card over a dimmed backdrop so nothing else can be touched until it's resolved. Reach for it when an action needs explicit confirmation — especially destructive or irreversible ones like deleting an employee. While open it traps keyboard focus; the user confirms, cancels, presses <b>Esc</b>, or clicks the backdrop to dismiss. Use <b>standard</b> (inline actions) for routine confirmations and <b>centered</b> (stacked actions) to give a single weighty choice more presence.</p></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="background:var(--bg-muted);gap:24px;align-items:flex-start">
+          <div class="kx-dialog">
+            <button class="kx-dialog__close kx-icon" data-icon="dismiss" aria-label="Close"></button>
+            <div class="kx-dialog__header">
+              <p class="kx-dialog__title">Edit profile</p>
+              <p class="kx-dialog__desc">Update the employee information, then save.</p>
+            </div>
+            <div class="kx-dialog__body" style="gap:16px;color:var(--fg)">
+              <label class="kx-field"><span class="kx-label">Name</span><input class="kx-input" value="Carine Nanté" /></label>
+              <label class="kx-field"><span class="kx-label">Job title</span><input class="kx-input" value="HR Assistant" /></label>
+            </div>
+            <div class="kx-dialog__actions">
+              <button class="kx-btn kx-btn--secondary">Cancel</button>
+              <button class="kx-btn kx-btn--primary">Save</button>
+            </div>
+          </div>
+          <div class="kx-dialog kx-dialog--center">
+            <div class="kx-dialog__header"><p class="kx-dialog__title">Delete this item?</p></div>
+            <p class="kx-dialog__body">Are you sure you want to delete this employee? This action cannot be undone.</p>
+            <div class="kx-dialog__actions">
+              <button class="kx-btn kx-btn--destructive">Delete</button>
+              <button class="kx-btn kx-btn--secondary">Cancel</button>
+            </div>
+          </div>
+        </div><div class="gd-story__label">Standard (header + close + inline actions) · Centered (stacked)</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame">
+          <button class="kx-btn kx-btn--secondary" data-open-dialog="#dlg-standard">Ouvrir — confirmation</button>
+          <button class="kx-btn kx-btn--primary" data-open-dialog="#dlg-form">Ouvrir — formulaire</button>
+          <button class="kx-btn kx-btn--destructive" data-open-dialog="#dlg-center">Ouvrir — suppression</button>
+        </div><div class="gd-story__label">Live modals — close via X, backdrop, or Esc</div></div>
+      </section>
+
+      <!-- Table -->
+      <section class="gd-section" id="table">
+        <div class="gd-section__head"><h2 class="gd-section__title">Table</h2>
+          <p class="gd-section__desc">A table lays structured records out in rows and columns so the user can scan and compare them across the same fields — the employee list is the canonical case. Column headers label the data; rows highlight on hover and can hold avatars, badges and per-row actions. Reach for it when comparison matters; for a single record, a card reads better.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="padding:0;display:block;overflow-x:auto">
+          <table class="kx-table kx-table--card" style="min-width:640px">
+            <thead><tr>
+              <th class="kx-table__check"><label class="kx-check"><input type="checkbox" aria-label="Select all" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></label></th>
+              <th class="is-sortable"><span class="kx-table__sort">Full name<span class="kx-icon" data-icon="arrow_sort" data-size="14"></span></span></th>
+              <th class="is-sortable"><span class="kx-table__sort">Job title<span class="kx-icon" data-icon="arrow_sort" data-size="14"></span></span></th>
+              <th class="is-sortable"><span class="kx-table__sort">Department<span class="kx-icon" data-icon="arrow_sort" data-size="14"></span></span></th>
+              <th>Status</th>
+              <th></th>
+            </tr></thead>
+            <tbody>
+              <tr class="is-selected">
+                <td class="kx-table__check"><label class="kx-check"><input type="checkbox" checked aria-label="Select" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></label></td>
+                <td><span class="kx-table__name"><span class="kx-avatar kx-avatar--sm">CN</span>Carine Nanté</span></td>
+                <td>HR Assistant</td><td>Human Resources</td>
+                <td><span class="kx-status kx-status--success"><span class="kx-status__dot"></span>Active</span></td>
+                <td class="kx-table__actions"><button class="kx-btn kx-btn--ghost kx-btn--mini">Edit</button><button class="kx-table__iconbtn kx-icon" data-icon="more_horizontal" aria-label="More"></button></td>
+              </tr>
+              <tr>
+                <td class="kx-table__check"><label class="kx-check"><input type="checkbox" aria-label="Select" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></label></td>
+                <td><span class="kx-table__name"><span class="kx-avatar kx-avatar--sm">SM</span>Serge Moko</span></td>
+                <td>Accountant</td><td>Finance</td>
+                <td><span class="kx-status kx-status--warning">On trial</span></td>
+                <td class="kx-table__actions"><button class="kx-btn kx-btn--ghost kx-btn--mini">Edit</button><button class="kx-table__iconbtn kx-icon" data-icon="more_horizontal" aria-label="More"></button></td>
+              </tr>
+              <tr>
+                <td class="kx-table__check"><label class="kx-check"><input type="checkbox" aria-label="Select" /><span class="kx-check__box"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></label></td>
+                <td><span class="kx-table__name"><span class="kx-avatar kx-avatar--sm">JD</span>Jeanne Dubois</span></td>
+                <td>Operations</td><td>Operations</td>
+                <td><span class="kx-status kx-status--danger">Departed</span></td>
+                <td class="kx-table__actions"><button class="kx-btn kx-btn--ghost kx-btn--mini">Edit</button><button class="kx-table__iconbtn kx-icon" data-icon="more_horizontal" aria-label="More"></button></td>
+              </tr>
+            </tbody></table>
+        </div><div class="gd-story__label">Datagrid — checkbox, sortable headers, avatar+name, selected row, row actions</div></div>
+      </section>
+
+      <!-- Feedback -->
+      <section class="gd-section" id="feedback">
+        <div class="gd-section__head"><h2 class="gd-section__title">Feedback</h2>
+          <p class="gd-section__desc">Feedback keeps the user oriented while the system works. A <b>progress bar</b> shows how far a known task has got; a <b>spinner</b> marks an indeterminate wait; a <b>skeleton</b> holds the shape of content that's still loading so the layout doesn't jump when it arrives; a <b>tooltip</b> reveals a short hint on hover. The point is the same — never leave the user wondering whether something is happening.</p></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:28px">
+          <div style="width:220px"><div class="kx-progress"><div class="kx-progress__bar" style="width:64%"></div></div></div>
+          <div class="kx-spinner"></div>
+          <div style="display:flex;flex-direction:column;gap:8px;width:220px">
+            <div class="kx-skeleton" style="height:12px;width:80%"></div>
+            <div class="kx-skeleton" style="height:12px;width:60%"></div>
+            <div class="kx-skeleton" style="height:12px;width:70%"></div>
+          </div>
+        </div><div class="gd-story__label">progress · spinner · skeleton</div></div>
+        <div class="gd-story"><div class="gd-story__frame" style="gap:40px;padding:40px 28px">
+          <span class="kx-tooltip kx-tooltip--top">Tooltip — top</span>
+          <span class="kx-tooltip kx-tooltip--bottom">Tooltip — bottom</span>
+          <span class="kx-tooltip kx-tooltip--left">Tooltip — left</span>
+          <span class="kx-tooltip kx-tooltip--right">Tooltip — right</span>
+        </div><div class="gd-story__label">Tooltip — a short hint on hover, arrow pointing to its target (4 sides)</div></div>
+      </section>
+
+      <!-- Navigation / app shell -->
+      <section class="gd-section" id="appshell">
+        <div class="gd-section__head"><h2 class="gd-section__title">Navigation</h2>
+          <p class="gd-section__desc">The app frame: an <b>icon rail</b> to switch workspaces and apps, a labelled <b>sidebar</b> that groups destinations into sections with one active at a time, and a <b>top bar</b> for search, notifications and the account. Together they orient the user — where they are, where they can go, and who they're signed in as.</p></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="padding:0;display:block;overflow-x:auto">
+          <div style="display:flex;min-height:440px;min-width:720px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-subtle)">
+            <div class="kx-rail">
+              <div class="kx-rail__logo"><img src="logo/symbol-white.svg" alt="kassirh" /></div>
+              <button class="kx-rail__item is-active kx-icon" data-icon="grid" aria-label="Apps"></button>
+              <button class="kx-rail__item kx-icon" data-icon="calendar" aria-label="Calendar"></button>
+              <button class="kx-rail__item kx-icon" data-icon="add" aria-label="Add" style="margin-top:auto"></button>
+            </div>
+            <nav class="kx-sidebar" style="border-right:1px solid var(--border-subtle)">
+              <div class="kx-sidebar__header"><img src="logo/logo.svg" alt="kassirh" class="gd-logo-img--light" /><img src="logo/logo-white.svg" alt="kassirh" class="gd-logo-img--dark" style="display:none" /></div>
+              <div class="kx-sidebar__section">
+                <div class="kx-sidebar__label">Main</div>
+                <a class="kx-nav-item is-active"><span class="kx-icon" data-icon="home"></span><span class="kx-nav-item__label">Dashboard</span></a>
+                <a class="kx-nav-item"><span class="kx-icon" data-icon="people"></span><span class="kx-nav-item__label">My employees</span><span class="kx-count kx-count--secondary">48</span></a>
+                <a class="kx-nav-item"><span class="kx-icon" data-icon="calendar"></span><span class="kx-nav-item__label">Schedules</span></a>
+                <a class="kx-nav-item"><span class="kx-icon" data-icon="grid"></span><span class="kx-nav-item__label">My teams</span></a>
+              </div>
+              <div class="kx-sidebar__section">
+                <div class="kx-sidebar__label">Organization</div>
+                <a class="kx-nav-item"><span class="kx-icon" data-icon="bell"></span><span class="kx-nav-item__label">Notifications</span><span class="kx-count kx-count--destructive">5</span></a>
+                <a class="kx-nav-item"><span class="kx-icon" data-icon="settings"></span><span class="kx-nav-item__label">Settings</span></a>
+              </div>
+              <div class="kx-sidebar__footer">
+                <a class="kx-nav-item"><span class="kx-avatar kx-avatar--sm">CN</span><span class="kx-nav-item__label">Carine Nanté</span><span class="kx-icon" data-icon="chevron_right"></span></a>
+              </div>
+            </nav>
+            <div style="flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg-subtle)">
+              <div class="kx-topbar">
+                <div class="kx-topbar__left"><span class="kx-icon" data-icon="grid" style="color:var(--fg-muted)"></span><span style="font:var(--kx-fw-semibold) var(--kx-fs-headline)/1 var(--kx-font-sans);color:var(--fg)">Dashboard</span></div>
+                <div class="kx-topbar__actions">
+                  <button class="kx-table__iconbtn kx-icon" data-icon="search" aria-label="Search"></button>
+                  <button class="kx-table__iconbtn kx-icon" data-icon="bell" aria-label="Notifications"></button>
+                  <span class="kx-avatar kx-avatar--sm">CN</span>
+                </div>
+              </div>
+              <div style="padding:24px;color:var(--fg-muted);font:var(--kx-fw-regular) var(--kx-fs-subtitle)/1.5 var(--kx-font-sans)">Content area — the sidebar marks "Dashboard" as active, the rail switches workspace.</div>
+            </div>
+          </div>
+        </div><div class="gd-story__label">App shell — rail · sidebar (sections, active item, counts) · top bar</div></div>
+
+        <div class="gd-story"><div class="gd-story__frame" style="padding:0;display:block;overflow-x:auto">
+          <nav class="kx-sidebar kx-sidebar--dark" style="min-width:240px">
+            <div class="kx-sidebar__header"><img src="logo/logo-white.svg" alt="kassirh" /></div>
+            <div class="kx-sidebar__section">
+              <div class="kx-sidebar__label">Main</div>
+              <a class="kx-nav-item is-active"><span class="kx-icon" data-icon="home"></span><span class="kx-nav-item__label">Dashboard</span></a>
+              <a class="kx-nav-item"><span class="kx-icon" data-icon="people"></span><span class="kx-nav-item__label">My employees</span></a>
+              <a class="kx-nav-item"><span class="kx-icon" data-icon="settings"></span><span class="kx-nav-item__label">Settings</span></a>
+            </div>
+          </nav>
+        </div><div class="gd-story__label">Dark sidebar variant</div></div>
+      </section>
+
+      <!-- Incoming -->
+      <section class="gd-section" id="next">
+        <div class="gd-section__head"><h2 class="gd-section__title">Incoming — from Figma</h2>
+          <p class="gd-section__desc">Share a Figma link and the component is built here on these exact tokens, then documented in <code>KASSIRH_DESIGN_SYSTEM.md</code>.</p></div>
+        <div class="gd-empty">Paste a <b>Figma link</b> in chat → I read its variables &amp; layout with the Figma MCP, build it against <b>theme.css</b>, and add a story to this page.</div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Live dialog modals -->
+  <div class="kx-dialog-overlay" id="dlg-standard" role="dialog" aria-modal="true" aria-labelledby="dlg-standard-t">
+    <div class="kx-dialog">
+      <button class="kx-dialog__close kx-icon" data-icon="dismiss" data-close-dialog aria-label="Close"></button>
+      <div class="kx-dialog__header">
+        <p class="kx-dialog__title" id="dlg-standard-t">Leave this page?</p>
+        <p class="kx-dialog__desc">Your changes may not be saved.</p>
+      </div>
+      <div class="kx-dialog__actions">
+        <button class="kx-btn kx-btn--secondary" data-close-dialog>Cancel</button>
+        <button class="kx-btn kx-btn--primary" data-close-dialog>Leave</button>
+      </div>
+    </div>
+  </div>
+  <div class="kx-dialog-overlay" id="dlg-form" role="dialog" aria-modal="true" aria-labelledby="dlg-form-t">
+    <div class="kx-dialog">
+      <button class="kx-dialog__close kx-icon" data-icon="dismiss" data-close-dialog aria-label="Close"></button>
+      <div class="kx-dialog__header">
+        <p class="kx-dialog__title" id="dlg-form-t">Edit profile</p>
+        <p class="kx-dialog__desc">Make your changes here. Click save when you're done.</p>
+      </div>
+      <div class="kx-dialog__body" style="gap:16px;color:var(--fg)">
+        <label class="kx-field"><span class="kx-label">Name</span><input class="kx-input" value="Carine Nanté" /></label>
+        <label class="kx-field"><span class="kx-label">Username</span><input class="kx-input" value="@carine" /></label>
+      </div>
+      <div class="kx-dialog__actions">
+        <button class="kx-btn kx-btn--secondary" data-close-dialog>Cancel</button>
+        <button class="kx-btn kx-btn--primary" data-close-dialog>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="kx-dialog-overlay" id="dlg-center" role="dialog" aria-modal="true" aria-labelledby="dlg-center-t">
+    <div class="kx-dialog kx-dialog--center">
+      <div class="kx-dialog__header"><p class="kx-dialog__title" id="dlg-center-t">Delete this item?</p></div>
+      <p class="kx-dialog__body">Are you sure you want to delete this employee? This action cannot be undone.</p>
+      <div class="kx-dialog__actions">
+        <button class="kx-btn kx-btn--destructive" data-close-dialog>Delete</button>
+        <button class="kx-btn kx-btn--secondary" data-close-dialog>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="system.js"></script>
+</body>
+</html>

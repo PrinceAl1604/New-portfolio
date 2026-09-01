@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Alex Landrin</title>
+
+<!--
+  ─────────────────────────────────────────────────────────────
+  ABOUT PAGE.  Everything is in this one file.
+  • Your name / bio ... search for  "Oscar Bergman"
+  • Profile card ...... the .tcard section (name, HP, companies, blurb)
+  • Photos ............ replace the <svg> inside .selfie and .pol-photo
+                        with <img src="me.png"/> / <img src="trip.jpg"/>
+  • Email ............. search for  mailto:alexlandrin203@gmail.com
+  • Back home ......... links to index.html
+  ─────────────────────────────────────────────────────────────
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#161616; --muted:#6b6b6b; --line:#e7e7e3;
+    --card:#ffffff; --bg:#f4f4f2; --dot:#d9d9d4; --radius:18px;
+    --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 30px -12px rgba(0,0,0,.18);
+    --shadow-hi:0 2px 6px rgba(0,0,0,.06), 0 30px 60px -18px rgba(0,0,0,.30);
+  }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0; overflow:hidden;
+    font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--ink); background-color:var(--bg);
+    background-image:radial-gradient(var(--dot) 1.1px, transparent 1.2px);
+    background-size:22px 22px; background-position:-11px -11px;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    user-select:none;
+  }
+  .stage{
+    position:fixed; left:50%; top:50%;
+    width:1200px; height:872px;
+    transform:translate(-50%,-50%); transform-origin:center center;
+  }
+  .card{
+    position:absolute; touch-action:none; cursor:grab;
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); box-shadow:var(--shadow);
+    transition:box-shadow .25s ease, transform .25s cubic-bezier(.2,.7,.2,1);
+    animation:pop .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay:var(--d,0s);
+    will-change:transform;
+  }
+  .card:hover{ transform:translateY(-4px) rotate(var(--tilt,0deg)); box-shadow:var(--shadow-hi); }
+  .card{ transform:rotate(var(--tilt,0deg)); }
+  .card:active{ cursor:grabbing; }
+  .card.dragging{ cursor:grabbing; transform:scale(1.03) rotate(var(--tilt,0deg)); box-shadow:var(--shadow-hi); transition:box-shadow .2s ease; }
+  @keyframes pop{ from{ opacity:0; transform:translateY(18px) scale(.96) rotate(var(--tilt,0deg)); } to{ opacity:1; } }
+  .no-drag{ cursor:default; }
+  button{ font-family:inherit; }
+  a.reset{ color:inherit; text-decoration:none; }
+
+  /* ── About card (center) ── */
+  .about{ width:400px; padding:30px 34px 30px; }
+  .avail{ display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:#555; margin-bottom:20px; }
+  .avail .dot{ width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 0 rgba(34,197,94,.5); animation:pulse 2.2s ease-out infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(34,197,94,.5);} 70%{ box-shadow:0 0 0 7px rgba(34,197,94,0);} 100%{ box-shadow:0 0 0 0 rgba(34,197,94,0);} }
+  .about h1{ font-size:32px; font-weight:500; letter-spacing:-.02em; margin:0 0 20px; }
+  .about .eyebrow{ font-size:11px; letter-spacing:.14em; font-weight:600; color:#9a9a9a; margin-bottom:16px; }
+  .about p b{ font-weight:600; color:#1c1c1c; }
+  .about p{ font-size:15px; line-height:1.62; color:#3a3a3a; margin:0 0 17px; }
+  .btns{ display:flex; gap:10px; margin-top:24px; }
+  .btn{ border:none; border-radius:12px; padding:11px 22px; font-size:14px; font-weight:500; cursor:pointer; transition:transform .15s ease, background .2s ease, box-shadow .2s ease; }
+  .btn.primary{ background:var(--ink); color:#fff; }
+  .btn.primary:hover{ transform:translateY(-2px); box-shadow:0 10px 20px -8px rgba(0,0,0,.5); }
+  .btn.ghost{ background:#f1f1ef; color:var(--ink); }
+  .btn.ghost:hover{ background:#e9e9e6; transform:translateY(-2px); }
+
+  /* ── Trading / profile card ── */
+  .tcard{ width:216px; padding:8px; border:none;
+    background:linear-gradient(150deg,#f6d549,#e7c637 60%,#f0cf45);
+    border-radius:15px; box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.35); }
+  .tcard-inner{ background:#faf9f4; border-radius:9px; padding:9px 9px 11px; }
+  .tc-head{ display:flex; align-items:center; gap:6px; margin-bottom:7px; }
+  .tc-basic{ font-size:8px; font-weight:700; color:#8a7300; border:1px solid #d9bf3a; border-radius:3px; padding:1px 3px; letter-spacing:.02em; }
+  .tc-name{ font-size:12.5px; font-weight:700; flex:1; }
+  .tc-hp{ font-size:10px; font-weight:700; color:#c0392b; display:inline-flex; align-items:center; gap:2px; }
+  .tcard-art{ height:150px; border-radius:6px; overflow:hidden; border:3px solid #e7c637; }
+  .tcard-art svg{ display:block; width:100%; height:100%; }
+  .tc-rows{ margin:9px 2px 0; }
+  .tc-row{ display:flex; align-items:center; gap:5px; padding:5px 0; border-bottom:1px solid #eee; }
+  .tc-row:last-child{ border-bottom:none; }
+  .tc-org{ font-size:11px; font-weight:600; flex:1; }
+  .tc-yr{ font-size:10px; color:#8a8a8a; font-weight:500; }
+  .drop{ color:#e0b93a; }
+  .tcard-desc{ font-size:7.5px; line-height:1.5; color:#9a9a9a; margin:8px 2px 0; font-style:italic; }
+
+  /* ── Spotify banner ── */
+  .spotify{ width:320px; padding:18px 18px; background:#121212; border:none; color:#fff; display:flex; align-items:center; gap:12px; border-radius:14px; }
+  .sp-text{ font-size:14px; font-weight:600; line-height:1.35; flex:1; }
+  .sp-btn{ background:#fff; color:#000; border:none; border-radius:999px; padding:9px 16px; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; transition:transform .15s ease; }
+  .sp-btn:hover{ transform:scale(1.05); }
+  .sp-x{ position:absolute; top:10px; right:12px; background:none; border:none; color:#b3b3b3; font-size:15px; cursor:pointer; line-height:1; transition:color .15s ease; }
+  .sp-x:hover{ color:#fff; }
+
+  /* ── Apple Music player ── */
+  .amcard{ width:330px; padding:0; overflow:hidden; border-radius:16px; background:#fff; }
+  .am-bar{ display:flex; align-items:center; gap:7px; font-size:11px; font-weight:600; letter-spacing:.02em; color:#9a9a9a; padding:9px 13px; background:#fafafa; border-bottom:1px solid var(--line); cursor:grab; }
+  .am-embed{ display:block; width:100%; height:175px; border:none; background:#fff; }
+
+  /* ── Font specimen card ── */
+  .fontcard{ padding:16px 22px 14px; text-align:center; }
+  .fc-aa{ font-size:42px; font-weight:600; letter-spacing:-.02em; line-height:1; }
+  .fc-label{ font-size:12px; color:var(--muted); margin-top:6px; }
+
+  /* ── Device mockups ── */
+  .device{ background:transparent; border:none; box-shadow:none; padding:0; }
+  .device:hover{ box-shadow:none; }
+  .device svg{ display:block; width:100%; height:auto; filter:drop-shadow(0 24px 40px rgba(0,0,0,.34)); }
+
+  /* ── Selfie photo ── */
+  .selfie{ width:132px; padding:7px 7px 8px; border-radius:12px; }
+  .selfie .frame{ border-radius:7px; overflow:hidden; display:block; }
+  .selfie svg{ display:block; width:100%; height:auto; }
+
+  /* ── Polaroid ── */
+  .polaroid{ width:278px; padding:11px 11px 0; border-radius:3px; }
+  .pol-photo{ height:188px; border-radius:2px; overflow:hidden; }
+  .pol-photo svg{ display:block; width:100%; height:100%; }
+  .pol-cap{ font-family:"Caveat", cursive; font-size:23px; color:#3a3a3a; padding:9px 6px 13px; }
+
+  /* ── Dock ── */
+  .dock{ position:absolute; left:50%; bottom:34px; transform:translateX(-50%);
+    display:flex; align-items:center; gap:6px; background:#1a1a1a; padding:9px 12px; border-radius:999px;
+    box-shadow:0 10px 30px -8px rgba(0,0,0,.55); z-index:5000;
+    animation:pop .6s cubic-bezier(.2,.7,.2,1) backwards; animation-delay:.5s; }
+  .dock a{ width:38px; height:38px; border-radius:50%; display:grid; place-items:center; color:#cfcfcf; text-decoration:none;
+    transition:transform .18s cubic-bezier(.3,1.4,.5,1), background .2s ease, color .2s ease; }
+  .dock a:hover{ color:#fff; background:rgba(255,255,255,.12); transform:translateY(-6px) scale(1.12); }
+  .dock .sep{ width:1px; height:20px; background:rgba(255,255,255,.14); margin:0 4px; }
+.dock a{ position:relative; }
+  .dock a::after{ content:attr(data-tip); position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%) translateY(4px); background:#1a1a1a; color:#fff; font-size:11px; font-weight:500; padding:5px 9px; border-radius:7px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .15s ease, transform .15s ease; box-shadow:0 6px 16px -6px rgba(0,0,0,.5); z-index:10; }
+  .dock a:hover::after{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  .hint{ position:fixed; left:50%; top:26px; transform:translateX(-50%); font-size:12.5px; color:var(--muted);
+    background:rgba(255,255,255,.7); backdrop-filter:blur(6px); border:1px solid var(--line);
+    padding:7px 14px; border-radius:999px; z-index:6000; animation:hintFade 5s ease forwards 1.2s; pointer-events:none; }
+  @keyframes hintFade{ 0%{opacity:0;transform:translate(-50%,-6px);} 12%{opacity:1;transform:translate(-50%,0);} 80%{opacity:1;} 100%{opacity:0;transform:translate(-50%,-6px);} }
+  @media (max-width:560px){ .hint{ display:none; } }
+
+  /* ============ RESPONSIVE — reflow the canvas into a scrollable stack on phones ============ */
+  @media (max-width:768px){
+    html,body{ height:auto; }
+    body{ overflow-x:hidden; overflow-y:auto; }
+    .stage{
+      position:static; left:auto; top:auto;
+      width:auto; height:auto; min-height:100vh;
+      transform:none !important;
+      display:flex; flex-direction:column; align-items:center; gap:16px;
+      padding:26px 16px 104px; box-sizing:border-box;
+    }
+    .stage .card{
+      position:relative !important; left:auto !important; top:auto !important;
+      width:100% !important; max-width:430px !important;
+      transform:none !important; cursor:default; animation:none;
+    }
+    .card:hover{ transform:none; }
+    .stage .card img, .stage .card iframe{ max-width:100%; }
+    .amcard iframe{ width:100% !important; }
+    /* readable mobile order: identity → bios → polaroid → music */
+    .tcard{ order:1; } .about{ order:2; } .polaroid{ order:3; } .amcard{ order:4; }
+    .dock{ position:fixed !important; bottom:16px !important; z-index:5000; }
+    .hint{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hint">✦ This is my about page, drag anything around</div>
+
+<div class="stage" id="stage">
+
+  <!-- Apple Music player (top-right). Drag by the top bar; the player itself is interactive. Needs internet. -->
+  <div class="card amcard" style="left:800px; top:30px; --d:.36s; --tilt:0deg;">
+    <div class="am-bar">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l10-2v13" stroke="#bdbdbd" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" stroke="#bdbdbd" stroke-width="1.8"/><circle cx="16.5" cy="16" r="2.5" stroke="#bdbdbd" stroke-width="1.8"/></svg>
+      Now playing · Apple Music
+    </div>
+    <iframe class="am-embed" allow="autoplay *; encrypted-media *; clipboard-write" loading="lazy" src="https://embed.music.apple.com/de/album/step-by-step-in-time/6781862650?i=6781863012&amp;l=en-GB"></iframe>
+  </div>
+
+  <!-- Profile / trading card (left) -->
+  <div class="card tcard" style="left:60px; top:140px; --d:.12s; --tilt:-2deg;">
+    <div class="tcard-inner">
+      <div class="tc-head">
+        <span class="tc-basic">BASIC</span>
+        <span class="tc-name">Alex Landrin</span>
+        <span class="tc-hp">HP 120
+          <svg width="9" height="9" viewBox="0 0 24 24"><path fill="#c0392b" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+        </span>
+      </div>
+      <div class="tcard-art">
+        <img src="me.png" alt="Alex Landrin" style="display:block;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+        <svg style="display:none" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b6f7a"/><stop offset="1" stop-color="#12303a"/></linearGradient>
+          </defs>
+          <rect width="200" height="150" fill="url(#sky)"/>
+          <g fill="#ffffff" opacity="0.18">
+            <circle cx="30" cy="28" r="4"/><circle cx="60" cy="18" r="2.5"/><circle cx="150" cy="24" r="5"/><circle cx="176" cy="52" r="3"/><circle cx="20" cy="70" r="2.5"/><circle cx="180" cy="96" r="4"/>
+          </g>
+          <!-- character bust -->
+          <g transform="translate(100,96)">
+            <path d="M-42 54 C-42 18 -26 6 0 6 C26 6 42 18 42 54 Z" fill="#1f7a4d"/>
+            <path d="M-10 8 L10 8 L6 26 L-6 26 Z" fill="#f2f2f0"/>
+            <circle cx="0" cy="-14" r="20" fill="#e9b58e"/>
+            <path d="M-20 -18 C-20 -40 20 -40 20 -18 C20 -30 -20 -30 -20 -18 Z" fill="#3a2a20"/>
+            <path d="M-20 -16 C-22 -28 -14 -36 0 -36 C14 -36 22 -28 20 -16 L14 -20 C12 -28 -12 -28 -14 -20 Z" fill="#2c2018"/>
+            <circle cx="-7" cy="-14" r="2" fill="#2c2018"/><circle cx="8" cy="-14" r="2" fill="#2c2018"/>
+          </g>
+        </svg>
+      </div>
+      <div class="tc-rows">
+        <div class="tc-row">
+          <svg class="drop" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+          <svg class="drop" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+          <span class="tc-org">aiio GmbH</span><span class="tc-yr">2024&ndash;now</span>
+        </div>
+        <div class="tc-row">
+          <svg class="drop" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+          <svg class="drop" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+          <span class="tc-org">Cozisoft</span><span class="tc-yr">2024&ndash;now</span>
+        </div>
+        <div class="tc-row">
+          <svg class="drop" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+          <svg class="drop" width="9" height="9" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.5 7 12a7 7 0 1 1-14 0c0-4.5 7-12 7-12Z"/></svg>
+          <span class="tc-org">kassiRH</span><span class="tc-yr">2025&ndash;26</span>
+        </div>
+      </div>
+      <div class="tcard-desc">Product &amp; brand designer with a maths mind. Systems-led, and shipped all the way to code. SaaS from the brand mark to the interface.</div>
+    </div>
+  </div>
+
+  <!-- About card 1 — product & craft (center) -->
+  <div class="card about" style="left:350px; top:64px; width:420px; --d:0s; --tilt:0deg;">
+    <div class="avail"><span class="dot"></span>Open to senior roles</div>
+    <h1>Alex Landrin</h1>
+    <p>I'm a product designer based in <b>Magdeburg, Germany</b>, with over five years in UI/UX and product design and seven years in brand design, built on a background that bridges mathematics, media informatics, and hands-on product craft.</p>
+    <p>At <b>aiio GmbH</b> I design <b>Polaris</b>, an AI-powered B2B platform for business process modeling, where I built the design system from scratch and still shape its token architecture, component patterns, and German-language voice.</p>
+    <p>My process starts in <b>Figma</b>, where I visualise and pressure-test ideas quickly, then moves into <b>Claude Design</b> and <b>Claude Code</b> to take those explorations all the way to pixel-perfect interfaces and working front-end code. My designs don't stop at static mockups. I ship them as real, responsive components in <b>React &amp; Tailwind</b>, validated in the browser where users will actually meet them.</p>
+    <div class="btns">
+      <a class="btn primary no-drag" href="mailto:alexlandrin203@gmail.com" style="display:inline-block; text-decoration:none;">Email me</a>
+      <a class="reset" href="index.html"><button class="btn ghost no-drag">Back home</button></a>
+    </div>
+  </div>
+
+  <!-- About card 2 — ventures & background (right) -->
+  <div class="card about" style="left:800px; top:262px; width:340px; --d:.12s; --tilt:1deg;">
+    <div class="eyebrow">STUDIO · COMMUNITY · CRAFT</div>
+    <p>Alongside my product work I run <b>LogoMint</b>, a brand studio that has served <b>500+ clients</b> across identity, naming and product design, with projects spanning African, European and North American markets.</p>
+    <p>I founded <b>ACADEMIA</b>, a francophone African creative-education community of <b>1,000+ members</b> and a design channel on YouTube with <b>10,000 subscribers</b>, built around a curriculum I wrote myself. I also ship independent software, including a set of <b>Adobe Illustrator UXP plugins</b>.</p>
+    <p>I'm Franco-Cameroonian and work in <b>French, German and English</b>. What I bring to a product team is the mix: close to a decade of brand thinking, systems rigor from a mathematics background, the entrepreneurial range of building and running my own ventures, and the cultural fluency to design for markets on three continents.</p>
+  </div>
+
+  <!-- Polaroid (bottom-right) -->
+  <div class="card polaroid" style="left:58px; top:558px; --d:.36s; --tilt:6deg;">
+    <div class="pol-photo">
+      <img src="magdeburg.jpg" alt="Magdeburg, the cathedral over the Elbe" style="display:block;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+      <svg style="display:none" viewBox="0 0 256 188" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="psky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0f2"/><stop offset="1" stop-color="#e9f4fb"/></linearGradient>
+          <linearGradient id="dome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8c15a"/><stop offset="1" stop-color="#c9992f"/></linearGradient>
+        </defs>
+        <rect width="256" height="188" fill="url(#psky)"/>
+        <rect y="120" width="256" height="68" fill="#5b8f4e"/>
+        <rect y="132" width="256" height="56" fill="#4e8143"/>
+        <!-- cathedral -->
+        <g transform="translate(128,70)">
+          <rect x="-46" y="14" width="92" height="52" fill="#e7ddce"/>
+          <rect x="-46" y="14" width="92" height="52" fill="#000" opacity=".05"/>
+          <path d="M-16 14 h32 v-6 a16 16 0 0 0 -32 0 Z" fill="url(#dome)"/>
+          <path d="M0 -22 l3 8 h-6 Z" fill="#d4af37"/>
+          <path d="M-40 14 h20 v-4 a10 10 0 0 0 -20 0 Z" fill="url(#dome)"/>
+          <path d="M20 14 h20 v-4 a10 10 0 0 0 -20 0 Z" fill="url(#dome)"/>
+          <rect x="-6" y="40" width="12" height="26" fill="#8a6b45"/>
+          <rect x="-34" y="44" width="9" height="14" fill="#b39b74"/>
+          <rect x="25" y="44" width="9" height="14" fill="#b39b74"/>
+        </g>
+        <g fill="#3f6e37"><circle cx="34" cy="128" r="18"/><circle cx="222" cy="126" r="20"/><circle cx="60" cy="140" r="14"/></g>
+      </svg>
+    </div>
+    <div class="pol-cap">Home base · Magdeburg, DE</div>
+  </div>
+
+  <!-- Dock -->
+  <nav class="dock" aria-label="navigation">
+    <a href="index.html" data-tip="Home" aria-label="Home">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10.5495 2.53189C11.3874 1.82531 12.6126 1.82531 13.4505 2.5319L20.2005 8.224C20.7074 8.65152 21 9.2809 21 9.94406L21 19.2539C21 20.2204 20.2165 21.0039 19.25 21.0039H15.75C14.7835 21.0039 14 20.2204 14 19.2539L14 14.2468C14 14.1088 13.8881 13.9968 13.75 13.9968H10.25C10.1119 13.9968 9.99999 14.1088 9.99999 14.2468L9.99999 19.2539C9.99999 20.2204 9.2165 21.0039 8.25 21.0039H4.75C3.7835 21.0039 3 20.2204 3 19.2539V9.94406C3 9.2809 3.29255 8.65152 3.79952 8.224L10.5495 2.53189ZM12.4835 3.6786C12.2042 3.44307 11.7958 3.44307 11.5165 3.6786L4.76651 9.37071C4.59752 9.51321 4.5 9.72301 4.5 9.94406L4.5 19.2539C4.5 19.392 4.61193 19.5039 4.75 19.5039H8.25C8.38807 19.5039 8.49999 19.392 8.49999 19.2539L8.49999 14.2468C8.49999 13.2803 9.2835 12.4968 10.25 12.4968H13.75C14.7165 12.4968 15.5 13.2803 15.5 14.2468L15.5 19.2539C15.5 19.392 15.6119 19.5039 15.75 19.5039H19.25C19.3881 19.5039 19.5 19.392 19.5 19.2539L19.5 9.94406C19.5 9.72301 19.4025 9.51321 19.2335 9.37071L12.4835 3.6786Z"/></svg>
+    </a>
+    <a href="#" data-tip="About" aria-label="About">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M17.7545 14.0002C18.9966 14.0002 20.0034 15.007 20.0034 16.2491V16.8245C20.0034 17.7188 19.6838 18.5836 19.1023 19.263C17.5329 21.0965 15.1457 22.0013 12.0004 22.0013C8.8545 22.0013 6.46849 21.0962 4.90219 19.2619C4.32242 18.583 4.00391 17.7195 4.00391 16.8267V16.2491C4.00391 15.007 5.01076 14.0002 6.25278 14.0002H17.7545ZM12.0004 2.00488C14.7618 2.00488 17.0004 4.24346 17.0004 7.00488C17.0004 9.76631 14.7618 12.0049 12.0004 12.0049C9.23894 12.0049 7.00036 9.76631 7.00036 7.00488C7.00036 4.24346 9.23894 2.00488 12.0004 2.00488Z"/></svg>
+    </a>
+    <a href="work.html" data-tip="Work" aria-label="Work">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V9.82777C20 9.29733 19.7893 8.78863 19.4142 8.41355L13.5864 2.58579C13.2114 2.21071 12.7027 2 12.1722 2H6ZM5.5 4C5.5 3.72386 5.72386 3.5 6 3.5H12V8C12 9.10457 12.8954 10 14 10H18.5V20C18.5 20.2761 18.2761 20.5 18 20.5H6C5.72386 20.5 5.5 20.2761 5.5 20V4ZM17.3793 8.5H14C13.7239 8.5 13.5 8.27614 13.5 8V4.62066L17.3793 8.5Z"/></svg>
+    </a>
+    <span class="sep"></span>
+    <a href="https://www.linkedin.com/in/alex-landrin-njonkoua-807309190/" target="_blank" rel="noopener" data-tip="LinkedIn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    <a href="CV_AlexLandrin.pdf" download data-tip="Download CV" aria-label="Download CV"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M18.2498 20.5009C18.664 20.5008 19 20.8365 19 21.2507C19 21.6649 18.6644 22.0008 18.2502 22.0009L5.25022 22.0047C4.836 22.0048 4.5 21.6691 4.5 21.2549C4.5 20.8407 4.83557 20.5048 5.24978 20.5047L18.2498 20.5009ZM11.6482 2.01271L11.75 2.00586C12.1297 2.00586 12.4435 2.28801 12.4932 2.65409L12.5 2.75586L12.499 16.4409L16.2208 12.7205C16.4871 12.4543 16.9038 12.4301 17.1974 12.648L17.2815 12.7206C17.5477 12.9869 17.5719 13.4036 17.354 13.6972L17.2814 13.7813L12.2837 18.7779C12.0176 19.044 11.6012 19.0683 11.3076 18.8507L11.2235 18.7782L6.22003 13.7816C5.92694 13.4889 5.92661 13.014 6.21931 12.7209C6.48539 12.4545 6.90204 12.43 7.1958 12.6477L7.27997 12.7202L10.999 16.4339L11 2.75586C11 2.37616 11.2822 2.06237 11.6482 2.01271L11.75 2.00586L11.6482 2.01271Z"/></svg></a>
+  </nav>
+
+</div>
+
+<script>
+  const stage = document.getElementById('stage');
+  const STAGE_W = 1200, STAGE_H = 872;
+  const isMobile = () => window.matchMedia('(max-width:768px)').matches;
+  function fitStage(){
+    if(isMobile()){ stage.style.transform = 'none'; stage.dataset.scale = 1; return; }
+    const pad = 48;
+    const scale = Math.min(1, (window.innerWidth - pad)/STAGE_W, (window.innerHeight - pad)/STAGE_H);
+    stage.style.transform = `translate(-50%,-50%) scale(${scale})`;
+    stage.dataset.scale = scale;
+  }
+  window.addEventListener('resize', fitStage); fitStage();
+
+  let zTop = 100;
+  document.querySelectorAll('.card').forEach(makeDraggable);
+
+  function makeDraggable(el){
+    let dragging=false, moved=false, startX, startY, origX, origY;
+    let vX=0, vY=0, lastX, lastY, lastT, raf=null;
+    el.addEventListener('pointerdown', (e) => {
+      if (isMobile()) return;
+      if (e.target.closest('.no-drag') || e.target.closest('a')) return;
+      dragging=true; moved=false;
+      el.setPointerCapture(e.pointerId);
+      cancelAnimationFrame(raf);
+      el.classList.add('dragging'); el.style.zIndex = ++zTop;
+      startX=e.clientX; startY=e.clientY;
+      origX=parseFloat(el.style.left); origY=parseFloat(el.style.top);
+      lastX=e.clientX; lastY=e.clientY; lastT=performance.now();
+    });
+    el.addEventListener('pointermove', (e) => {
+      if(!dragging) return;
+      const scale = parseFloat(stage.dataset.scale) || 1;
+      const dx=(e.clientX-startX)/scale, dy=(e.clientY-startY)/scale;
+      if (Math.abs(dx)+Math.abs(dy) > 2) moved=true;
+      el.style.left=(origX+dx)+'px'; el.style.top=(origY+dy)+'px';
+      const now=performance.now(), dt=Math.max(now-lastT,8);
+      vX=((e.clientX-lastX)/scale)/dt*16; vY=((e.clientY-lastY)/scale)/dt*16;
+      lastX=e.clientX; lastY=e.clientY; lastT=now;
+    });
+    const end = () => {
+      if(!dragging) return; dragging=false; el.classList.remove('dragging');
+      const friction=0.90;
+      const glide=()=>{ vX*=friction; vY*=friction;
+        if(Math.abs(vX)<0.15 && Math.abs(vY)<0.15) return;
+        el.style.left=(parseFloat(el.style.left)+vX)+'px';
+        el.style.top=(parseFloat(el.style.top)+vY)+'px';
+        raf=requestAnimationFrame(glide);
+      };
+      if(moved) raf=requestAnimationFrame(glide);
+    };
+    el.addEventListener('pointerup', end);
+    el.addEventListener('pointercancel', end);
+  }
+
+  // Spotify dismiss + demo
+  document.querySelectorAll('.sp-x').forEach(x => x.addEventListener('click', e => {
+    e.currentTarget.closest('.card').style.display='none';
+  }));
+</script>
+</body>
+</html>

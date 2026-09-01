@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>aiio — Case Study · Alex Landrin</title>
+
+<!-- PROJECT DETAIL — aiio. Replace each <div class="ph">…</div> with <img class="shot" src="…"> -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{ --ink:#161616; --muted:#6b6b6b; --line:#e7e7e3; --bg:#f6f6f4; --dot:#e2e2dd; --blue:#2f6be0; }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--ink); background-color:var(--bg);
+    background-image:radial-gradient(var(--dot) 1px, transparent 1.1px); background-size:24px 24px; background-position:-12px -12px;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .wrap{ max-width:760px; margin:0 auto; padding:52px 24px 180px; }
+  .back{ display:inline-flex; align-items:center; gap:6px; font-size:14px; color:#555; text-decoration:none; padding:6px 4px; border-radius:8px; transition:color .15s ease, transform .15s ease; }
+  .back:hover{ color:var(--ink); transform:translateX(-2px); }
+  .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .eyebrow{ font-size:11.5px; letter-spacing:.14em; color:#8a8a8a; font-weight:600; margin:34px 0 10px; }
+  .head{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 12px; }
+  .head h1{ font-size:34px; font-weight:600; letter-spacing:-.02em; margin:0; }
+  .pill{ font-size:12px; color:#4b4b4b; background:#ececea; border:1px solid #e2e2df; padding:4px 10px; border-radius:999px; font-weight:600; letter-spacing:.02em; }
+  .lede{ font-size:16px; line-height:1.6; color:#3d3d3d; margin:0 0 18px; max-width:620px; }
+  .cta-row{ display:flex; gap:10px; flex-wrap:wrap; margin:0 0 26px; }
+  .cta{ display:inline-flex; align-items:center; gap:8px; border-radius:999px; padding:12px 22px; font-size:14.5px; font-weight:500; text-decoration:none; transition:transform .15s ease, background .2s ease, box-shadow .2s ease; }
+  .cta svg{ flex:none; }
+  .cta.primary{ background:var(--ink); color:#fff; }
+  .cta.primary:hover{ transform:translateY(-2px); box-shadow:0 10px 20px -8px rgba(0,0,0,.5); }
+  .cta.ghost{ background:#eceae8; color:var(--ink); border:1px solid var(--line); }
+  .cta.ghost:hover{ background:#e4e2df; transform:translateY(-2px); }
+  .meta{ display:flex; flex-wrap:wrap; gap:26px 40px; padding:20px 0 4px; border-top:1px solid var(--line); margin-bottom:8px; }
+  .meta .k{ font-size:11px; letter-spacing:.1em; color:#9a9a9a; font-weight:600; margin-bottom:5px; }
+  .meta .v{ font-size:13.5px; color:#3d3d3d; max-width:260px; line-height:1.45; }
+  section{ margin-top:46px; }
+  h2{ font-size:12px; letter-spacing:.12em; color:#8a8a8a; font-weight:600; margin:0 0 16px; }
+  .body{ font-size:15px; line-height:1.64; color:#3d3d3d; margin:0; }
+  .step{ display:flex; gap:18px; padding:22px 0; border-top:1px solid var(--line); }
+  .step:first-of-type{ border-top:none; padding-top:6px; }
+  .step-n{ font-size:13px; font-weight:600; color:#bcbcb6; min-width:24px; padding-top:2px; }
+  .step-cat{ font-size:11px; letter-spacing:.12em; color:#9a9a9a; font-weight:600; margin-bottom:6px; }
+  .step h3{ font-size:17px; font-weight:600; letter-spacing:-.01em; margin:0 0 8px; }
+  .step p{ font-size:14.5px; line-height:1.6; color:#4a4a4a; margin:0; }
+  .metrics{ display:flex; flex-wrap:wrap; gap:14px; }
+  .metric{ flex:1 1 180px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .m-val{ font-size:26px; font-weight:600; letter-spacing:-.02em; }
+  .m-lbl{ font-size:13px; color:var(--muted); margin-top:6px; line-height:1.4; }
+  .shot, .ph{ width:100%; display:block; }
+  .ph{ position:relative; overflow:hidden;
+    background:repeating-linear-gradient(45deg, rgba(0,0,0,.015) 0 12px, rgba(0,0,0,0) 12px 24px), linear-gradient(135deg,#efefec,#e1e1dc);
+    border:1px solid #e6e6e2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; color:#a6a69f; text-align:center; padding:20px; }
+  .ph svg{ width:28px; height:28px; box-shadow:none; border-radius:0; }
+  .ph .cap{ font-size:13px; font-weight:500; color:#7d7d76; }
+  .ph .tag{ font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:#b3b3ac; }
+  .hero{ margin:30px 0 4px; }
+  .gallery{ display:flex; flex-direction:column; gap:22px; margin-top:16px; }
+  .gcap{ font-size:12.5px; color:#8a8a8a; margin-top:9px; padding-left:2px; }
+  .pager{ display:flex; justify-content:space-between; gap:16px; margin-top:64px; padding-top:24px; border-top:1px solid var(--line); }
+  .pager a{ font-size:15px; color:#555; text-decoration:none; }
+  .pager a b{ color:var(--ink); font-weight:600; }
+  .pager a:hover b{ text-decoration:underline; }
+  .dock{ position:fixed; left:50%; bottom:28px; transform:translateX(-50%); display:flex; align-items:center; gap:6px; background:#1a1a1a; padding:9px 12px; border-radius:999px; box-shadow:0 10px 30px -8px rgba(0,0,0,.55); z-index:5000; }
+  .dock a{ width:38px; height:38px; border-radius:50%; display:grid; place-items:center; color:#cfcfcf; text-decoration:none; transition:transform .18s cubic-bezier(.3,1.4,.5,1), background .2s ease, color .2s ease; }
+  .dock a:hover{ color:#fff; background:rgba(255,255,255,.12); transform:translateY(-6px) scale(1.12); }
+  .dock a.current{ color:#fff; background:rgba(255,255,255,.16); }
+  .dock .sep{ width:1px; height:20px; background:rgba(255,255,255,.14); margin:0 4px; }
+.dock a{ position:relative; }
+  .dock a::after{ content:attr(data-tip); position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%) translateY(4px); background:#1a1a1a; color:#fff; font-size:11px; font-weight:500; padding:5px 9px; border-radius:7px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .15s ease, transform .15s ease; box-shadow:0 6px 16px -6px rgba(0,0,0,.5); z-index:10; }
+  .dock a:hover::after{ opacity:1; transform:translateX(-50%) translateY(0); }
+  /* ============ RESPONSIVE — small phones ============ */
+  @media (max-width:600px){
+    .wrap{ padding:38px 18px 150px; }
+    .eyebrow{ margin-top:26px; }
+    .head h1{ font-size:26px; }
+    .cta{ padding:11px 18px; font-size:14px; }
+    .m-val{ font-size:22px; }
+    .meta{ gap:18px 28px; }
+    .dock{ bottom:16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="work.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>All work</a>
+
+  <div class="eyebrow">§02 · SAAS · BPMN · DESIGN SYSTEM</div>
+  <div class="head"><h1>aiio</h1><span class="pill">BPMN · SaaS</span>
+    <!-- View demo hidden for now — restore by uncommenting.
+    <a class="cta primary" href="aiio-app/app/dashboard/" target="_blank" rel="noopener" style="margin-left:auto;">
+      <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M5 5.27368C5 3.56682 6.82609 2.48151 8.32538 3.2973L20.687 10.0235C22.2531 10.8756 22.2531 13.124 20.687 13.9762L8.32538 20.7024C6.82609 21.5181 5 20.4328 5 18.726V5.27368Z"/></svg>
+      View demo
+    </a>
+    -->
+  </div>
+  <p class="lede">A BPMN platform for non-technical teams — evolving from a modelling tool into proactive, human-steered process intelligence.</p>
+
+  <div class="cta-row">
+    <a class="cta ghost" href="aiio-app/system/" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24"><path fill="currentColor" d="M8.75 13C9.99264 13 11 14.0074 11 15.25V18.75C11 19.9926 9.99264 21 8.75 21H5.25C4.00736 21 3 19.9926 3 18.75V15.25C3 14.0074 4.00736 13 5.25 13H8.75ZM18.75 13C19.9926 13 21 14.0074 21 15.25V18.75C21 19.9926 19.9926 21 18.75 21H15.25C14.0074 21 13 19.9926 13 18.75V15.25C13 14.0074 14.0074 13 15.25 13H18.75ZM8.75 14.5H5.25C4.83579 14.5 4.5 14.8358 4.5 15.25V18.75C4.5 19.1642 4.83579 19.5 5.25 19.5H8.75C9.16421 19.5 9.5 19.1642 9.5 18.75V15.25C9.5 14.8358 9.16421 14.5 8.75 14.5ZM18.75 14.5H15.25C14.8358 14.5 14.5 14.8358 14.5 15.25V18.75C14.5 19.1642 14.8358 19.5 15.25 19.5H18.75C19.1642 19.5 19.5 19.1642 19.5 18.75V15.25C19.5 14.8358 19.1642 14.5 18.75 14.5ZM8.75 3C9.99264 3 11 4.00736 11 5.25V8.75C11 9.99264 9.99264 11 8.75 11H5.25C4.00736 11 3 9.99264 3 8.75V5.25C3 4.00736 4.00736 3 5.25 3H8.75ZM18.75 3C19.9926 3 21 4.00736 21 5.25V8.75C21 9.99264 19.9926 11 18.75 11H15.25C14.0074 11 13 9.99264 13 8.75V5.25C13 4.00736 14.0074 3 15.25 3H18.75ZM8.75 4.5H5.25C4.83579 4.5 4.5 4.83579 4.5 5.25V8.75C4.5 9.16421 4.83579 9.5 5.25 9.5H8.75C9.16421 9.5 9.5 9.16421 9.5 8.75V5.25C9.5 4.83579 9.16421 4.5 8.75 4.5ZM18.75 4.5H15.25C14.8358 4.5 14.5 4.83579 14.5 5.25V8.75C14.5 9.16421 14.8358 9.5 15.25 9.5H18.75C19.1642 9.5 19.5 9.16421 19.5 8.75V5.25C19.5 4.83579 19.1642 4.5 18.75 4.5Z"/></svg>
+      See Design system
+    </a>
+    <a class="cta ghost" href="https://www.figma.com/design/aF5TgBls1Z5SuNTvdi5iG6/aiio-Polaris-Web-Concept?node-id=1-110225&amp;t=6PEB5lm7eOnyDGMq-1" target="_blank" rel="noopener">
+      <svg width="14" height="21" viewBox="0 0 38 57" xmlns="http://www.w3.org/2000/svg"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+      See design in Figma
+    </a>
+  </div>
+
+  <div class="meta">
+    <div><div class="k">ROLE</div><div class="v">Product Designer — first design hire, whole-product ownership</div></div>
+    <div><div class="k">TIMEFRAME</div><div class="v">2024 — present</div></div>
+    <div><div class="k">TOOLS</div><div class="v">Figma, Design Systems, Design Tokens, Prototyping</div></div>
+  </div>
+
+  <img class="shot hero" src="aiio/cover_aiio.png" alt="aiio — ProcessCollector · My Tasks" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+  <div class="ph hero" style="aspect-ratio:16/10; display:none">
+    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.75 3A3.25 3.25 0 0 1 21 6.25v11.5A3.25 3.25 0 0 1 17.75 21H6.25A3.25 3.25 0 0 1 3 17.75V6.25A3.25 3.25 0 0 1 6.25 3h11.5Zm.57 16.4-5.8-5.69a.75.75 0 0 0-1.05 0l-5.81 5.69c.18.06.37.1.57.1h11.5c.2 0 .4-.04.59-.1ZM17.75 4.5H6.25c-.97 0-1.75.78-1.75 1.75v11.5c0 .2.04.4.1.59l5.83-5.7a2.25 2.25 0 0 1 3.15 0l5.82 5.7c.07-.18.1-.38.1-.59V6.25c0-.97-.78-1.75-1.75-1.75ZM15.25 6.5a2.25 2.25 0 1 1 0 4.5 2.25 2.25 0 0 1 0-4.5Z"/></svg>
+    <div class="cap">aiio — BPMN platform</div><div class="tag">Placeholder — replace with final asset</div>
+  </div>
+
+  <section>
+    <h2>THE PROBLEM</h2>
+    <p class="body">aiio was a capable BPMN platform built by engineers — but every screen had been implemented ad-hoc, with no design system and no one owning the experience end to end. At the same time the company was making a bold bet: that classic BPM is dead, and aiio's future is proactive, agentic process intelligence that a human still steers. That reinvention had to stay legible to the people who actually use it — non-technical teams modelling real business processes, where a confusing screen or an unguarded action isn't a nuisance, it's a broken process. The product needed a design foundation strong enough to carry the bet — and it didn't have one.</p>
+  </section>
+
+  <section>
+    <h2>WHAT I DID</h2>
+    <div class="step"><div class="step-n">01</div><div class="step-body"><div class="step-cat">RESEARCH</div><h3>Mapped the domain and the debt at once</h3><p>I joined as aiio's first designer, so I read two things in parallel: the BPMN domain and its non-technical users, and the product exactly as engineers had built it. The audit made the gap plain — the software was capable, but inconsistent screen to screen, with no shared language holding it together.</p></div></div>
+    <div class="step"><div class="step-n">02</div><div class="step-body"><div class="step-cat">DECISIONS</div><h3>A new direction on the brand — and a real system beneath it</h3><p>I set a new design direction rooted in aiio's corporate identity: more innovative, more consistent, calmer than the developer-built UI it replaced. The larger call was to stop shipping one-off screens and commit to a system — the agentic, proactive 2.0 vision would only feel trustworthy on a foundation that behaved predictably everywhere.</p></div></div>
+    <div class="step"><div class="step-n">03</div><div class="step-body"><div class="step-cat">DESIGN</div><h3>Built the system while redesigning the product</h3><p>I led the colour tokens and built aiio's first Figma component library — new components drawn from the brand — in parallel with the redesign itself. The guiding rule came straight from the users: BPMN for non-technical teams has to be genuinely easy, and error-intolerant by design — the interface guides you so the wrong move is hard to make in the first place.</p></div></div>
+    <div class="step"><div class="step-n">04</div><div class="step-body"><div class="step-cat">SHIP</div><h3>Shipped as a live 2.0</h3><p>It went live. aiio 2.0 shipped and now runs under a new name — Process Collector — with the design foundation (tokens, components, direction) as what the product is built on, not a coat of paint over the old one.</p></div></div>
+  </section>
+
+  <section>
+    <h2>SELECTED SCREENS</h2>
+    <div class="gallery">
+      <div><img class="shot" src="aiio/Task%20page.png" alt="aiio — My Tasks (process recording)" /><div class="gcap">The redesigned core — My Tasks, process recording, approvals &amp; reminders</div></div>
+      <div><img class="shot" src="aiio/Process%20List.png" alt="aiio — Processes list" /><div class="gcap">The process library — list, filter, version and own every process</div></div>
+      <div><img class="shot" src="aiio/Process%20DP%20_%20View.png" alt="aiio — Process detail / BPMN view" /><div class="gcap">A process in depth — BPMN diagram, AI expert and full process data</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>OUTCOME</h2>
+    <div class="metrics">
+      <div class="metric"><div class="m-val">0 → 1</div><div class="m-lbl">aiio's first design system, built from scratch</div></div>
+      <div class="metric"><div class="m-val">Live</div><div class="m-lbl">Shipped as 2.0 — now Process Collector</div></div>
+      <div class="metric"><div class="m-val">End-to-end</div><div class="m-lbl">Sole design ownership of the product</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>WHAT I'D DO DIFFERENTLY</h2>
+    <p class="body">Building the design system in parallel with the redesign meant the foundation kept shifting under the product — I'd ship a pattern, then revise it as the system matured. Next time I'd lock a small, strict token core first and grow the component library from that, rather than evolving both at once. Being the first designer also taught me the system only sticks when engineers own it with me — so I spent as much time aligning on the why as on the components themselves.</p>
+  </section>
+
+  <div class="pager">
+    <a href="ream.html">← Previous <b>REAM</b></a>
+    <a href="kassirh.html">Next → <b>kassiRH</b></a>
+  </div>
+</div>
+
+<nav class="dock" aria-label="navigation">
+  <a href="index.html" data-tip="Home" aria-label="Home"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10.5495 2.53189C11.3874 1.82531 12.6126 1.82531 13.4505 2.5319L20.2005 8.224C20.7074 8.65152 21 9.2809 21 9.94406L21 19.2539C21 20.2204 20.2165 21.0039 19.25 21.0039H15.75C14.7835 21.0039 14 20.2204 14 19.2539L14 14.2468C14 14.1088 13.8881 13.9968 13.75 13.9968H10.25C10.1119 13.9968 9.99999 14.1088 9.99999 14.2468L9.99999 19.2539C9.99999 20.2204 9.2165 21.0039 8.25 21.0039H4.75C3.7835 21.0039 3 20.2204 3 19.2539V9.94406C3 9.2809 3.29255 8.65152 3.79952 8.224L10.5495 2.53189ZM12.4835 3.6786C12.2042 3.44307 11.7958 3.44307 11.5165 3.6786L4.76651 9.37071C4.59752 9.51321 4.5 9.72301 4.5 9.94406L4.5 19.2539C4.5 19.392 4.61193 19.5039 4.75 19.5039H8.25C8.38807 19.5039 8.49999 19.392 8.49999 19.2539L8.49999 14.2468C8.49999 13.2803 9.2835 12.4968 10.25 12.4968H13.75C14.7165 12.4968 15.5 13.2803 15.5 14.2468L15.5 19.2539C15.5 19.392 15.6119 19.5039 15.75 19.5039H19.25C19.3881 19.5039 19.5 19.392 19.5 19.2539L19.5 9.94406C19.5 9.72301 19.4025 9.51321 19.2335 9.37071L12.4835 3.6786Z"/></svg></a>
+  <a href="about.html" data-tip="About" aria-label="About"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M17.7545 14.0002C18.9966 14.0002 20.0034 15.007 20.0034 16.2491V16.8245C20.0034 17.7188 19.6838 18.5836 19.1023 19.263C17.5329 21.0965 15.1457 22.0013 12.0004 22.0013C8.8545 22.0013 6.46849 21.0962 4.90219 19.2619C4.32242 18.583 4.00391 17.7195 4.00391 16.8267V16.2491C4.00391 15.007 5.01076 14.0002 6.25278 14.0002H17.7545ZM12.0004 2.00488C14.7618 2.00488 17.0004 4.24346 17.0004 7.00488C17.0004 9.76631 14.7618 12.0049 12.0004 12.0049C9.23894 12.0049 7.00036 9.76631 7.00036 7.00488C7.00036 4.24346 9.23894 2.00488 12.0004 2.00488Z"/></svg></a>
+  <a href="work.html" data-tip="Work" aria-label="Work" class="current"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V9.82777C20 9.29733 19.7893 8.78863 19.4142 8.41355L13.5864 2.58579C13.2114 2.21071 12.7027 2 12.1722 2H6ZM5.5 4C5.5 3.72386 5.72386 3.5 6 3.5H12V8C12 9.10457 12.8954 10 14 10H18.5V20C18.5 20.2761 18.2761 20.5 18 20.5H6C5.72386 20.5 5.5 20.2761 5.5 20V4ZM17.3793 8.5H14C13.7239 8.5 13.5 8.27614 13.5 8V4.62066L17.3793 8.5Z"/></svg></a>
+  <span class="sep"></span>
+  <a href="https://www.linkedin.com/in/alex-landrin-njonkoua-807309190/" target="_blank" rel="noopener" data-tip="LinkedIn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+  <a href="CV_AlexLandrin.pdf" download data-tip="Download CV" aria-label="Download CV"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M18.2498 20.5009C18.664 20.5008 19 20.8365 19 21.2507C19 21.6649 18.6644 22.0008 18.2502 22.0009L5.25022 22.0047C4.836 22.0048 4.5 21.6691 4.5 21.2549C4.5 20.8407 4.83557 20.5048 5.24978 20.5047L18.2498 20.5009ZM11.6482 2.01271L11.75 2.00586C12.1297 2.00586 12.4435 2.28801 12.4932 2.65409L12.5 2.75586L12.499 16.4409L16.2208 12.7205C16.4871 12.4543 16.9038 12.4301 17.1974 12.648L17.2815 12.7206C17.5477 12.9869 17.5719 13.4036 17.354 13.6972L17.2814 13.7813L12.2837 18.7779C12.0176 19.044 11.6012 19.0683 11.3076 18.8507L11.2235 18.7782L6.22003 13.7816C5.92694 13.4889 5.92661 13.014 6.21931 12.7209C6.48539 12.4545 6.90204 12.43 7.1958 12.6477L7.27997 12.7202L10.999 16.4339L11 2.75586C11 2.37616 11.2822 2.06237 11.6482 2.01271L11.75 2.00586L11.6482 2.01271Z"/></svg></a>
+</nav>
+</body>
+</html>
